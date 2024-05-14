@@ -1,134 +1,191 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" >
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>SEDEBAT</title>
+        <link rel="icon" href="{{asset('img/logosedeba.png')}}" type="image/x-icon">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="{{asset('css/fontawesome-free/css/all.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/fontawesome-free/css/tailwind.css')}}">
+        @vite(['resources/css/app.css','resources/js/app.js'])
+
     </head>
-    <body class="text-blueGray-700 antialiased">
+    <body class="text-blueGray-700 antialiased dark:bg-gray-800">
 
         {{-- navegador --}}
-        <nav class="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
+        <nav class="dark:bg-gray-600 top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
           <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
             <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                 <a class=" flex text-blueGray-700 text-2xl font-bold leading-relaxed mr-4 py-2 whitespace-nowrap uppercase" 
                     href="./index.html">
                     <img src="{{asset('img/logosedeba.png')}}" class="h-10 flex-initial mr-3">
-                    <span class="flex-initial"> SEDEBAT</span>
-                </a> 
-                <button class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-                    type="button" onclick="toggleNavbar('example-collapse-navbar')">
-                        <i class="fas fa-bars"></i>
-                </button>
+                    <span class="flex-initial dark:text-white"> SEDEBAT</span>
+                </a>
+                <button data-collapse-toggle="navbar-dropdown" onclick="toggleNavbar('example-collapse-navbar')" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button> 
             </div>
             <div class="lg:flex flex-grow items-center bg-white lg:bg-opacity-0 lg:shadow-none hidden" id="example-collapse-navbar">
-              <ul class="flex flex-col lg:flex-row list-none lg:ml-auto items-center">
+              <ul class="flex flex-col lg:flex-row list-none lg:ml-auto items-center dark:bg-gray-600">
                 <li class="inline-block relative">
-                  <a class="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  <a class=" dark:text-gray-300 dark:hover:text-white hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                     href="#blog">
-                    blog
+                    Inicio
                   </a>
                 </li>
-                <li class="flex items-center">
-                    <a class="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdemos.creative-tim.com%2Fnotus-js%2F"
-                        target="_blank">
-                        <i class="text-blueGray-400 fab fa-facebook text-lg leading-lg"></i>
-                    </a>
+                <li class="inline-block relative">
+                  <a class=" dark:text-gray-300 dark:hover:text-white hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    href="#blog">
+                    Blog
+                  </a>
                 </li>
+                
+                <li >  
+                  @if (Route::has('login'))
+                  <nav class=" flex flex-1 justify-end">
+                    @auth
+                    <a
+                    href="{{ url('/dashboard') }}"
+                    class=" dark:text-gray-300 dark:hover:text-white hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                              >
+                                  Dashboard
+                              </a>
+                          @else
+                              <a
+                                  href="{{ route('login') }}"
+                                  class=" dark:text-gray-300 dark:hover:text-white hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                              >
+                                  Inicia sesión 
+                              </a>
+
+                              @if (Route::has('register'))
+                                  <a
+                                      href="{{ route('register') }}"
+                                      class=" dark:text-gray-300 dark:hover:text-white hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                                  >
+                                      Registrate
+                                  </a>
+                              @endif
+                          @endauth
+                      </nav>
+                  @endif
+                </li>
+
                 <li class="flex items-center">
-                    <a class="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  <a class=" dark:text-gray-300 hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                      href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdemos.creative-tim.com%2Fnotus-js%2F"
+                      target="_blank">
+                      <i class="text-blueGray-400 dark:hover:text-white hover:text-blueGray-800 fab fa-facebook text-lg leading-lg"></i>
+                  </a>
+                    <a class=" dark:text-gray-300 hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                         href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fdemos.creative-tim.com%2Fnotus-js%2F&text=Start%20your%20development%20with%20a%20Free%20Tailwind%20CSS%20and%20JavaScript%20UI%20Kit%20and%20Admin.%20Let%20Notus%20JS%20amaze%20you%20with%20its%20cool%20features%20and%20build%20tools%20and%20get%20your%20project%20to%20a%20whole%20new%20level."
                         target="_blank">
-                        <i class="text-blueGray-400 fab fa-twitter text-lg leading-lg"></i>
+                        <i class="text-blueGray-400 dark:hover:text-white hover:text-blueGray-800 fab fa-twitter text-lg leading-lg"></i>
                     </a>
-                </li>
-                <li class="flex items-center">
-                    <a class="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    <a class=" dark:text-gray-300 hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                         href="https://github.com/creativetimofficial/notus-js?ref=njs-index"
                         target="_blank">
-                        <i class="text-blueGray-400  fab fa-instagram text-lg leading-l"></i>
+                        <i class="text-blueGray-400 dark:hover:text-white  hover:text-blueGray-800 fab fa-instagram text-lg leading-l"></i>
                     </a>
-                </li>
-                    @if (Route::has('login'))
-                        <nav class="-mx-3 flex flex-1 justify-end">
-                            @auth
-                                <a
-                                    href="{{ url('/dashboard') }}"
-                                    class="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                                >
-                                    Dashboard
-                                </a>
-                            @else
-                                <a
-                                    href="{{ route('login') }}"
-                                    class="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                                >
-                                    Log in
-                                </a>
 
-                                @if (Route::has('register'))
-                                    <a
-                                        href="{{ route('register') }}"
-                                        class="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                                    >
-                                        Register
-                                    </a>
-                                @endif
-                            @endauth
-                        </nav>
-                    @endif
+                    <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                      <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 dark:hover:text-gray-700" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                      <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 dark:hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
 
-        {{-- seccion 1 --}}
-        <section class="header relative pt-16 items-center flex h-screen max-h-860-px">
+        {{-- seccion noticias de la semana --}}
+        <section class="header relative pt-96 sm:my-0 sm:pb-0 items-center flex h-screen max-h-860-px  my-[30em] pb-[30em]">
           <div class="container mx-auto items-center flex flex-wrap">
-            <div class="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
-              <div class="pt-32 sm:pt-0">
-                <h2 class="font-semibold text-4xl text-blueGray-600">
-                  Notus Tailwind JS - A beautiful extension for Tailwind CSS.
-                </h2>
-                <p class="mt-4 text-lg leading-relaxed text-blueGray-500">
-                  Notus Tailwind JS is Free and Open Source. It does not change any
-                  of the CSS from
-                  <a href="https://tailwindcss.com/?ref=creativetim"
-                    class="text-blueGray-600" target="_blank">
-                    Tailwind CSS.
+            <div class="w-full px-4">
+              <div class="grid sm:grid-rows-3 sm:grid-cols-3 grid-cols-1 grid-rows-5 gap-4">
+                
+                <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-500">
+                  <a href="#">
+                      <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in Claim?</h5>
                   </a>
-                  It features multiple HTML elements and it comes with dynamic
-                  components for ReactJS, Vue and Angular.
-                </p>
-                <div class="mt-12">
-                  <a href="https://www.creative-tim.com/learning-lab/tailwind/js/overview/notus?ref=njs-index"
-                    target="_blank"
-                    class="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-pink-500 active:bg-pink-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150">
-                    Get started
-                  </a>
-                  <a href="https://github.com/creativetimofficial/notus-js?ref=njs-index"
-                    class="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-                    target="_blank" >
-                    Github Star
+                  <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits:</p>
+                  <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline">
+                      See our guideline
+                      <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
+                      </svg>
                   </a>
                 </div>
+                
+                <div class="grid  gap-4 row-span-2 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 
+                dark:border-gray-500">
+                  <a href="#">
+                      <img class="rounded-t-lg" src="https://img.freepik.com/foto-gratis/colores-arremolinados-interactuan-danza-fluida-sobre-lienzo-que-muestra-tonos-vibrantes-patrones-dinamicos-que-capturan-caos-belleza-arte-abstracto_157027-2892.jpg" alt="" />
+                  </a>
+                  <div class="p-5">
+                      <a href="#">
+                          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                      </a>
+                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                      <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline">
+                        See our guideline
+                        <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
+                        </svg>
+                      </a>
+                  </div>
+                </div>
+
+                <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-500">
+                  <a href="#">
+                      <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in Claim?</h5>
+                  </a>
+                  <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits:</p>
+                  <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline">
+                      See our guideline
+                      <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
+                      </svg>
+                  </a>
+                </div>
+
+                <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-500">
+                  <a href="#">
+                      <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in Claim?</h5>
+                  </a>
+                  <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits:</p>
+                  <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline">
+                      See our guideline
+                      <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
+                      </svg>
+                  </a>
+                </div>
+
+                <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-500">
+                  <a href="#">
+                      <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in Claim?</h5>
+                  </a>
+                  <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits:</p>
+                  <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline">
+                      See our guideline
+                      <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
+                      </svg>
+                  </a>
+                </div>
+
               </div>
             </div>
           </div>
-    
-          <img class="absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860-px"
-            src="./assets/img/ill_header_3.png"
-            alt="..."
-          />
         </section>
 
         {{-- seccion 2 --}}
@@ -952,4 +1009,54 @@
 
       </body>
       <script src="{{asset('js/plantilla.js')}}"> </script> 
+      <script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+      </script>
+      <script>
+        var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Change the icons inside the button based on previous settings
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        var themeToggleBtn = document.getElementById('theme-toggle');
+
+        themeToggleBtn.addEventListener('click', function() {
+
+            // toggle icons inside button
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            // if set via local storage previously
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+
+            // if NOT set via local storage previously
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+            
+        });
+      </script>
 </html>
