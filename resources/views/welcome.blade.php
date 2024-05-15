@@ -22,7 +22,7 @@
           <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
             <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                 <a class=" flex text-blueGray-700 text-2xl font-bold leading-relaxed mr-4 py-2 whitespace-nowrap uppercase" 
-                    href="./index.html">
+                    href="{{ url('/welcome') }}">
                     <img src="{{asset('img/logosedeba.png')}}" class="h-10 flex-initial mr-3">
                     <span class="flex-initial dark:text-white"> SEDEBAT</span>
                 </a>
@@ -37,7 +37,7 @@
               <ul class="flex flex-col lg:flex-row list-none lg:ml-auto items-center dark:bg-gray-600">
                 <li class="inline-block relative">
                   <a class=" dark:text-gray-300 dark:hover:text-white hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                    href="#blog">
+                    href="{{ url('/welcome') }}">
                     Inicio
                   </a>
                 </li>
@@ -106,689 +106,282 @@
           </div>
         </nav>
 
-        {{-- seccion noticias de la semana --}}
+        {{-- titulo de landing --}}
+        <div class=" mt-28 container mx-auto items-center">
+          <h1 class="text-5xl text-center font-extrabold dark:text-white">BLOG SEDEBAT</h1>
+          <p class="text-sm text-center  mt-3 mb-[48em]  md:mb-64 lg:mb-9 font-light dark:text-white">Do quis aliqua ex qui et ad. Amet excepteur nisi incididunt duis ex reprehenderit. Aliquip in sunt adipisicing pariatur veniam. Aute esse sint incididunt aliqua cupidatat commodo deserunt exercitation enim aliquip. Incididunt labore non proident incididunt nostrud enim anim officia nisi est commodo nisi deserunt. Nostrud consectetur laborum esse Lorem ullamco laborum anim adipisicing excepteur. Eiusmod labore fugiat aliquip exercitation dolor Lorem cillum consequat ad deserunt.</p>
+        </div>
+
+        {{-- seccion noticias destacadas--}}
         <section class="header relative pt-96 sm:my-0 sm:pb-0 items-center flex h-screen max-h-860-px  my-[30em] pb-[30em]">
           <div class="container mx-auto items-center flex flex-wrap">
-            <div class="w-full px-4">
-              <div class="grid sm:grid-rows-3 sm:grid-cols-3 grid-cols-1 grid-rows-5 gap-4">
-                
-                <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-500">
-                  <a href="#">
-                      <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in Claim?</h5>
-                  </a>
-                  <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits:</p>
-                  <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline">
-                      See our guideline
-                      <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
-                      </svg>
-                  </a>
-                </div>
-                
-                <div class="grid  gap-4 row-span-2 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 
-                dark:border-gray-500">
-                  <a href="#">
-                      <img class="rounded-t-lg" src="https://img.freepik.com/foto-gratis/colores-arremolinados-interactuan-danza-fluida-sobre-lienzo-que-muestra-tonos-vibrantes-patrones-dinamicos-que-capturan-caos-belleza-arte-abstracto_157027-2892.jpg" alt="" />
-                  </a>
-                  <div class="p-5">
-                      <a href="#">
-                          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                      </a>
-                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                      <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline">
-                        See our guideline
-                        <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
-                        </svg>
-                      </a>
+            <div class="w-full px-4 mt-[40em] sm:mt-[20em] md:mt-[65em] lg:mt-0">
+              <h4 class="text-2xl font-bold text-center mb-10 dark:text-white">Articulos destacados</h4>
+              <div class="grid md:grid-cols-2 md:row-3 lg:grid-rows-3 lg:grid-cols-3 grid-cols-1 grid-rows-5 gap-4">
+                <a href="#" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-500">
+                  <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in asdasd asdasd asds  sdfsdf fsdfsd sdfsdf  sfdsdfsdf sfsdf Claim?</h5>
+                  <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits: Laborum quis aute sit aliquip veniam dolor esse consectetur irure esse id dolore. Anim est do ea excepteur sit cillum anim ullamco </p>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img class="w-7 h-7 rounded-full shadow-lg" src="https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg" alt="">
+                        <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">@usuario</span>
+                    </div>
+                    <span class="text-xs font-normal text-gray-500 dark:text-gray-400">12-18-2018</span>
                   </div>
-                </div>
+                </a>
+                
+                <a href="#" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 grid  gap-4 lg:row-span-2 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 
+                dark:border-gray-500">
+                  <img class="rounded-t-lg" src="https://img.freepik.com/foto-gratis/colores-arremolinados-interactuan-danza-fluida-sobre-lienzo-que-muestra-tonos-vibrantes-patrones-dinamicos-que-capturan-caos-belleza-arte-abstracto_157027-2892.jpg" alt="" />
+                  <div class="p-5">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img class="w-7 h-7 rounded-full shadow-lg" src="https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg" alt="">
+                        <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">@usuario</span>
+                    </div>
+                    <span class="text-xs font-normal text-gray-500 dark:text-gray-400">12-18-2018</span>
+                  </div>
+                </a>
 
-                <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-500">
-                  <a href="#">
-                      <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in Claim?</h5>
-                  </a>
+                <a href="#" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-500">
+                  <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in Claim?</h5>
                   <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits:</p>
-                  <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline">
-                      See our guideline
-                      <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
-                      </svg>
-                  </a>
-                </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img class="w-7 h-7 rounded-full shadow-lg" src="https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg" alt="">
+                        <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">@usuario</span>
+                    </div>
+                    <span class="text-xs font-normal text-gray-500 dark:text-gray-400">12-18-2018</span>
+                  </div>
+                </a>
 
-                <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-500">
-                  <a href="#">
-                      <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in Claim?</h5>
-                  </a>
+                <a href="" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-500">
+                  <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in Claim?</h5>
                   <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits:</p>
-                  <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline">
-                      See our guideline
-                      <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
-                      </svg>
-                  </a>
-                </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img class="w-7 h-7 rounded-full shadow-lg" src="https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg" alt="">
+                        <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">@usuario</span>
+                    </div>
+                    <span class="text-xs font-normal text-gray-500 dark:text-gray-400">12-18-2018</span>
+                  </div>
+                </a>
 
-                <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-500">
-                  <a href="#">
-                      <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in Claim?</h5>
-                  </a>
+                <a href="" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-500">
+                  <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in Claim?</h5>
                   <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits:</p>
-                  <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline">
-                      See our guideline
-                      <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
-                      </svg>
-                  </a>
-                </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img class="w-7 h-7 rounded-full shadow-lg" src="https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg" alt="">
+                        <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">@usuario</span>
+                    </div>
+                    <span class="text-xs font-normal text-gray-500 dark:text-gray-400">12-18-2018</span>
+                  </div>
+                </a>
 
               </div>
             </div>
           </div>
         </section>
 
-        {{-- seccion 2 --}}
-        <section class="mt-48 md:mt-40 pb-40 relative bg-blueGray-100">
+        {{-- seccion ultimas noticias --}}
+        <section class="mt-[75em] sm:mt-[85em] pb-10 relative bg-blueGray-200 dark:bg-gray-500">
           <div class="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
             style="transform: translateZ(0)">
             <svg class="absolute bottom-0 overflow-hidden"
               xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0" >
-                <polygon class="text-blueGray-100 fill-current"
+                <polygon class="text-blueGray-200 dark:text-gray-500 fill-current"
                     points="2560 0 2560 100 0 100">
                 </polygon>
             </svg>
           </div>
-          <div class="container mx-auto">
-            <div class="flex flex-wrap items-center">
-              <div class="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-32">
-                <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg">
-                  <img alt="..." src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80" class="w-full align-middle rounded-t-lg"/>
-                  <blockquote class="relative p-8 mb-4">
-                    <svg  preserveAspectRatio="none"  xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 583 95" class="absolute left-0 w-full block h-95-px -top-94-px">
-                      <polygon points="-30,95 583,95 583,65" class="text-pink-500 fill-current">
-                      </polygon>
-                    </svg>
-                    <h4 class="text-xl font-bold text-white">
-                      Great for your awesome project
-                    </h4>
-                    <p class="text-md font-light mt-2 text-white">
-                      Putting together a page has never been easier than matching
-                      together pre-made components. From landing pages presentation
-                      to login areas, you can easily customise and built your pages.
-                    </p>
-                  </blockquote>
-                </div>
-              </div>
-    
-              <div class="w-full md:w-6/12 px-4">
-                <div class="flex flex-wrap">
-                  <div class="w-full md:w-6/12 px-4">
-                    <div class="relative flex flex-col mt-4">
-                      <div class="px-4 py-5 flex-auto">
-                        <div
-                          class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"
-                        >
-                          <i class="fas fa-sitemap"></i>
-                        </div>
-                        <h6 class="text-xl mb-1 font-semibold">CSS Components</h6>
-                        <p class="mb-4 text-blueGray-500">
-                          Notus Tailwind JS comes with a huge number of Fully Coded
-                          CSS components.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="relative flex flex-col min-w-0">
-                      <div class="px-4 py-5 flex-auto">
-                        <div
-                          class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"
-                        >
-                          <i class="fas fa-drafting-compass"></i>
-                        </div>
-                        <h6 class="text-xl mb-1 font-semibold">
-                          JavaScript Components
-                        </h6>
-                        <p class="mb-4 text-blueGray-500">
-                          We also feature many dynamic components for React, NextJS,
-                          Vue and Angular.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="w-full md:w-6/12 px-4">
-                    <div class="relative flex flex-col min-w-0 mt-4">
-                      <div class="px-4 py-5 flex-auto">
-                        <div
-                          class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"
-                        >
-                          <i class="fas fa-newspaper"></i>
-                        </div>
-                        <h6 class="text-xl mb-1 font-semibold">Pages</h6>
-                        <p class="mb-4 text-blueGray-500">
-                          This extension also comes with 3 sample pages. They are
-                          fully coded so you can start working instantly.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="relative flex flex-col min-w-0">
-                      <div class="px-4 py-5 flex-auto">
-                        <div
-                          class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"
-                        >
-                          <i class="fas fa-file-alt"></i>
-                        </div>
-                        <h6 class="text-xl mb-1 font-semibold">Documentation</h6>
-                        <p class="mb-4 text-blueGray-500">
-                          Built by developers for developers. You will love how easy
-                          is to to work with Notus Tailwind JS.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-    
-          <div class="container mx-auto overflow-hidden pb-20">
-            <div class="flex flex-wrap items-center">
-              <div class="w-full md:w-4/12 px-12 md:px-4 ml-auto mr-auto mt-48">
-                <div
-                  class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white"
-                >
-                  <i class="fas fa-sitemap text-xl"></i>
-                </div>
-                <h3 class="text-3xl mb-2 font-semibold leading-normal">
-                  CSS Components
-                </h3>
-                <p
-                  class="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600"
-                >
-                  Every element that you need in a product comes built in as a
-                  component. All components fit perfectly with each other and can
-                  have different colours.
-                </p>
-                <div class="block pb-6">
-                  <span
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-                  >
-                    Buttons
-                  </span>
-                  <span
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-                  >
-                    Inputs
-                  </span>
-                  <span
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-                  >
-                    Labels
-                  </span>
-                  <span
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-                  >
-                    Menus
-                  </span>
-                  <span
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-                  >
-                    Navbars
-                  </span>
-                  <span
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-                  >
-                    Pagination
-                  </span>
-                  <span
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-                  >
-                    Progressbars
-                  </span>
-                  <span
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-                  >
-                    Typography
-                  </span>
-                </div>
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/js/alerts/notus?ref=njs-index"
-                  target="_blank"
-                  class="font-bold text-blueGray-700 hover:text-blueGray-500 ease-linear transition-all duration-150"
-                >
-                  View All
-                  <i class="fa fa-angle-double-right ml-1 leading-relaxed"></i>
-                </a>
-              </div>
-    
-              <div class="w-full md:w-5/12 px-4 mr-auto ml-auto mt-32">
-                <div
-                  class="relative flex flex-col min-w-0 w-full mb-6 mt-48 md:mt-0"
-                >
-                  <img
-                    alt="..."
-                    src="./assets/img/component-btn.png"
-                    class="w-full align-middle rounded absolute shadow-lg max-w-100-px left-145-px -top-29-px z-3"
-                  />
-                  <img
-                    alt="..."
-                    src="./assets/img/component-profile-card.png"
-                    class="w-full align-middle rounded-lg absolute shadow-lg max-w-210-px left-260-px -top-160-px"
-                  />
-                  <img
-                    alt="..."
-                    src="./assets/img/component-info-card.png"
-                    class="w-full align-middle rounded-lg absolute shadow-lg max-w-180-px left-40-px -top-225-px z-2"
-                  />
-                  <img
-                    alt="..."
-                    src="./assets/img/component-info-2.png"
-                    class="w-full align-middle rounded-lg absolute shadow-2xl max-w-200-px -left-50-px top-25-px"
-                  />
-                  <img
-                    alt="..."
-                    src="./assets/img/component-menu.png"
-                    class="w-full align-middle rounded absolute shadow-lg max-w-580-px -left-20-px top-210-px"
-                  />
-                  <img
-                    alt="..."
-                    src="./assets/img/component-btn-pink.png"
-                    class="w-full align-middle rounded absolute shadow-xl max-w-120-px left-195-px top-95-px"
-                  />
-                </div>
-              </div>
-            </div>
-    
-            <div class="flex flex-wrap items-center pt-32">
-              <div class="w-full md:w-6/12 px-4 mr-auto ml-auto mt-32">
-                <div class="justify-center flex flex-wrap relative">
-                  <div class="my-4 w-full lg:w-6/12 px-4">
-                    <a
-                      href="https://www.creative-tim.com/learning-lab/tailwind/svelte/alerts/notus?ref=vtw-index"
-                      target="_blank"
-                    >
-                      <div class="bg-red-600 shadow-lg rounded-lg text-center p-8">
-                        <img
-                          alt="..."
-                          class="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white"
-                          src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/svelte.jpg"
-                        />
-                        <p class="text-lg text-white mt-4 font-semibold">Svelte</p>
-                      </div>
-                    </a>
-                    <a
-                      href="https://www.creative-tim.com/learning-lab/tailwind/react/alerts/notus?ref=vtw-index"
-                      target="_blank"
-                    >
-                      <div
-                        class="bg-lightBlue-500 shadow-lg rounded-lg text-center p-8 mt-8"
-                      >
-                        <img
-                          alt="..."
-                          class="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white"
-                          src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/react.jpg"
-                        />
-                        <p class="text-lg text-white mt-4 font-semibold">ReactJS</p>
-                      </div>
-                    </a>
-                    <a
-                      href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/alerts/notus?ref=vtw-index"
-                      target="_blank"
-                    >
-                      <div
-                        class="bg-blueGray-700 shadow-lg rounded-lg text-center p-8 mt-8"
-                      >
-                        <img
-                          alt="..."
-                          class="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white"
-                          src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/nextjs.jpg"
-                        />
-                        <p class="text-lg text-white mt-4 font-semibold">NextJS</p>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="my-4 w-full lg:w-6/12 px-4 lg:mt-16">
-                    <a
-                      href="https://www.creative-tim.com/learning-lab/tailwind/js/alerts/notus?ref=vtw-index"
-                      target="_blank"
-                    >
-                      <div
-                        class="bg-yellow-500 shadow-lg rounded-lg text-center p-8"
-                      >
-                        <img
-                          alt="..."
-                          class="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white"
-                          src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/js.png"
-                        />
-                        <p class="text-lg text-white mt-4 font-semibold">
-                          JavaScript
-                        </p>
-                      </div>
-                    </a>
-                    <a
-                      href="https://www.creative-tim.com/learning-lab/tailwind/angular/alerts/notus?ref=vtw-index"
-                      target="_blank"
-                    >
-                      <div
-                        class="bg-red-700 shadow-lg rounded-lg text-center p-8 mt-8"
-                      >
-                        <img
-                          alt="..."
-                          class="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white"
-                          src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/angular.jpg"
-                        />
-                        <p class="text-lg text-white mt-4 font-semibold">Angular</p>
-                      </div>
-                    </a>
-                    <a
-                      href="https://www.creative-tim.com/learning-lab/tailwind/vue/alerts/notus?ref=vtw-index"
-                      target="_blank"
-                    >
-                      <div
-                        class="bg-emerald-500 shadow-lg rounded-lg text-center p-8 mt-8"
-                      >
-                        <img
-                          alt="..."
-                          class="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white"
-                          src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/vue.jpg"
-                        />
-                        <p class="text-lg text-white mt-4 font-semibold">Vue.js</p>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-    
-              <div class="w-full md:w-4/12 px-12 md:px-4 ml-auto mr-auto mt-48">
-                <div
-                  class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white"
-                >
-                  <i class="fas fa-drafting-compass text-xl"></i>
-                </div>
-                <h3 class="text-3xl mb-2 font-semibold leading-normal">
-                  Javascript Components
-                </h3>
-                <p
-                  class="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600"
-                >
-                  In order to create a great User Experience some components require
-                  JavaScript. In this way you can manipulate the elements on the
-                  page and give more options to your users.
-                </p>
-                <p
-                  class="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600"
-                >
-                  We created a set of Components that are dynamic and come to help
-                  you.
-                </p>
-                <div class="block pb-6">
-                  <span
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-                  >
-                    Alerts
-                  </span>
-                  <span
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-                  >
-                    Dropdowns
-                  </span>
-                  <span
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-                  >
-                    Menus
-                  </span>
-                  <span
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-                  >
-                    Modals
-                  </span>
-                  <span
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-                  >
-                    Navbars
-                  </span>
-                  <span
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-                  >
-                    Popovers
-                  </span>
-                  <span
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-                  >
-                    Tabs
-                  </span>
-                  <span
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-                  >
-                    Tooltips
-                  </span>
-                </div>
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/js/alerts/notus?ref=njs-index"
-                  target="_blank"
-                  class="font-bold text-blueGray-700 hover:text-blueGray-500 ease-linear transition-all duration-150"
-                >
-                  View all
-                  <i class="fa fa-angle-double-right ml-1 leading-relaxed"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-    
-          <div class="container mx-auto px-4 pb-32 pt-48">
+          {{-- ultima noticia--}}
+          <div class="container mx-auto w-full">
             <div class="items-center flex flex-wrap">
-              <div class="w-full md:w-5/12 ml-auto px-12 md:px-4">
-                <div class="md:pr-12">
-                  <div
-                    class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white"
-                  >
-                    <i class="fas fa-file-alt text-xl"></i>
-                  </div>
-                  <h3 class="text-3xl font-semibold">Complex Documentation</h3>
-                  <p class="mt-4 text-lg leading-relaxed text-blueGray-500">
-                    This extension comes a lot of fully coded examples that help you
-                    get started faster. You can adjust the colors and also the
-                    programming language. You can change the text and images and
-                    you're good to go.
-                  </p>
-                  <ul class="list-none mt-6">
-                    <li class="py-2">
+              <h3 class="text-3xl font-bold ml-6 mt-10 -mb-6 dark:text-white">Ultimo articulo</h3>
+                <a href="#" class=" transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 duration-300 flex flex-col mt-16 w-full mx-5 items-center bg-white border border-gray-200 rounded-lg shadow lg:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                  <img class="object-cover w-full h-full rounded-t-lg md:h-auto md:rounded-none md:rounded-s-lg" src="https://img.freepik.com/foto-gratis/colores-arremolinados-interactuan-danza-fluida-sobre-lienzo-que-muestra-tonos-vibrantes-patrones-dinamicos-que-capturan-caos-belleza-arte-abstracto_157027-2892.jpg" alt="">
+                  <div class="flex flex-col justify-between p-4 leading-normal">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                          Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
+                          Aliqua aliquip Lorem sunt veniam voluptate dolor. Minim mollit aute consectetur ea ex laborum consequat labore deserunt qui nisi. Ad id commodo officia enim ullamco esse id sint minim eiusmod. Voluptate ad consectetur ullamco ipsum nostrud officia excepteur anim veniam. In commodo mollit id do aliquip veniam ipsum occaecat elit. Esse elit consequat eiusmod magna labore dolor reprehenderit magna labore.
+                    </p>
+                    <div class="flex items-center  mt-5 justify-between">
                       <div class="flex items-center">
-                        <div>
-                          <span
-                            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-blueGray-50 mr-3"
-                          >
-                            <i class="fas fa-fingerprint"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 class="text-blueGray-500">
-                            Built by Developers for Developers
-                          </h4>
-                        </div>
+                          <img class="w-7 h-7 rounded-full shadow-lg" src="https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg" alt="">
+                          <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">@usuario</span>
                       </div>
-                    </li>
-                    <li class="py-2">
-                      <div class="flex items-center">
-                        <div>
-                          <span
-                            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-blueGray-50 mr-3"
-                          >
-                            <i class="fab fa-html5"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 class="text-blueGray-500">
-                            Carefully crafted code for Components
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="py-2">
-                      <div class="flex items-center">
-                        <div>
-                          <span
-                            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-blueGray-50 mr-3"
-                          >
-                            <i class="far fa-paper-plane"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 class="text-blueGray-500">
-                            Dynamic Javascript Components
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-    
-              <div class="w-full md:w-6/12 mr-auto px-4 pt-24 md:pt-0">
-                <img
-                  alt="..."
-                  class="max-w-full rounded-lg shadow-xl"
-                  style="
-                    transform: scale(1) perspective(1040px) rotateY(-11deg)
-                      rotateX(2deg) rotate(2deg);
-                  "
-                  src="./assets/img/documentation.png"
-                />
-              </div>
-            </div>
-          </div>
-    
-          <div class="justify-center text-center flex flex-wrap mt-24">
-            <div class="w-full md:w-6/12 px-12 md:px-4">
-              <h2 class="font-semibold text-4xl">Beautiful Example Pages</h2>
-              <p class="text-lg leading-relaxed mt-4 mb-4 text-blueGray-500">
-                Notus Tailwind JS is a completly new product built using our past
-                experience in web templates. Take the examples we made for you and
-                start playing with them.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {{-- seccion 3 --}}
-        <section class="block relative z-1 bg-blueGray-600">
-          <div class="container mx-auto">
-            <div class="justify-center flex flex-wrap">
-              <div class="w-full lg:w-12/12 px-4 -mt-24">
-                <div class="flex flex-wrap">
-                  <div class="w-full lg:w-4/12 px-4">
-                    <h5 class="text-xl font-semibold pb-4 text-center">
-                      Login Page
-                    </h5>
-                    <a href="./pages/auth/login.html">
-                      <div
-                        class="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150"
-                      >
-                        <img
-                          alt="..."
-                          class="align-middle border-none max-w-full h-auto rounded-lg"
-                          src="./assets/img/login.jpg"
-                        />
-                      </div>
-                    </a>
+                      <span class="text-xs font-normal text-gray-500 dark:text-gray-400">12-18-2018</span>
+                    </div>
                   </div>
-    
-                  <div class="w-full lg:w-4/12 px-4">
-                    <h5 class="text-xl font-semibold pb-4 text-center">
-                      Profile Page
-                    </h5>
-                    <a href="./pages/profile.html">
-                      <div
-                        class="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150"
-                      >
-                        <img
-                          alt="..."
-                          class="align-middle border-none max-w-full h-auto rounded-lg"
-                          src="./assets/img/profile.jpg"
-                        />
-                      </div>
-                    </a>
-                  </div>
-    
-                  <div class="w-full lg:w-4/12 px-4">
-                    <h5 class="text-xl font-semibold pb-4 text-center">
-                      Landing Page
-                    </h5>
-                    <a href="./pages/landing.html">
-                      <div
-                        class="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150"
-                      >
-                        <img
-                          alt="..."
-                          class="align-middle border-none max-w-full h-auto rounded-lg"
-                          src="./assets/img/landing.jpg"
-                        />
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {{-- seccion 4 --}}
-        <section class="py-20 bg-blueGray-600 overflow-hidden">
-          <div class="container mx-auto pb-64">
-            <div class="flex flex-wrap justify-center">
-              <div class="w-full md:w-5/12 px-12 md:px-4 ml-auto mr-auto md:mt-64">
-                <div
-                  class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white"
-                >
-                  <i class="fas fa-code-branch text-xl"></i>
-                </div>
-                <h3 class="text-3xl mb-2 font-semibold leading-normal text-white">
-                  Open Source
-                </h3>
-                <p
-                  class="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-400"
-                >
-                  Since
-                  <a
-                    href="https://tailwindcss.com/?ref=creativetim"
-                    class="text-blueGray-300"
-                    target="_blank"
-                  >
-                    Tailwind CSS
-                  </a>
-                  is an open source project we wanted to continue this movement too.
-                  You can give this version a try to feel the design and also test
-                  the quality of the code!
-                </p>
-                <p
-                  class="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-400"
-                >
-                  Get it free on Github and please help us spread the news with a
-                  Star!
-                </p>
-                <a
-                  href="https://github.com/creativetimofficial/notus-js?ref=njs-index"
-                  target="_blank"
-                  class="github-star mt-4 inline-block text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-                >
-                  Github Star
                 </a>
-              </div>
-    
-              <div class="w-full md:w-4/12 px-4 mr-auto ml-auto mt-32 relative">
-                <i
-                  class="fab fa-github text-blueGray-700 text-55 absolute -top-150-px -right-100 left-auto opacity-80"
-                ></i>
+            </div>
+          </div>
+        
+          {{-- ultimas noticias de la semana--}}
+          <div class="container mx-auto overflow-hidden pb-20">
+            <div class="items-center flex flex-wrap">
+              {{-- titulo --}}
+              <h3 class="text-3xl font-bold mt-20 ml-6 mb-10 dark:text-white">Ultimos articulos de la semana</h3>
+
+              {{-- notias --}}
+              <div class="grid sm:grid-rows-6 lg:grid-rows-3 ml-6 sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 grid-rows-5 gap-4">
+
+                <a href="#" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 grid  gap-4 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 
+                  dark:border-gray-500">
+                  <img class="rounded-t-lg" src="https://img.freepik.com/foto-gratis/colores-arremolinados-interactuan-danza-fluida-sobre-lienzo-que-muestra-tonos-vibrantes-patrones-dinamicos-que-capturan-caos-belleza-arte-abstracto_157027-2892.jpg" alt="" />
+                  <div class="p-5">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img class="w-7 h-7 rounded-full shadow-lg" src="https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg" alt="">
+                        <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">@usuario</span>
+                    </div>
+                    <span class="text-xs font-normal text-gray-500 dark:text-gray-400">12-18-2018</span>
+                  </div>
+                </a>
+
+                <a href="#" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 grid  gap-4 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 
+                  dark:border-gray-500">
+                  <img class="rounded-t-lg" src="https://img.freepik.com/foto-gratis/colores-arremolinados-interactuan-danza-fluida-sobre-lienzo-que-muestra-tonos-vibrantes-patrones-dinamicos-que-capturan-caos-belleza-arte-abstracto_157027-2892.jpg" alt="" />
+                  <div class="p-5">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img class="w-7 h-7 rounded-full shadow-lg" src="https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg" alt="">
+                        <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">@usuario</span>
+                    </div>
+                    <span class="text-xs font-normal text-gray-500 dark:text-gray-400">12-18-2018</span>
+                  </div>
+                </a>
+
+                <a href="#" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 grid  gap-4 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 
+                  dark:border-gray-500">
+                  <img class="rounded-t-lg" src="https://img.freepik.com/foto-gratis/colores-arremolinados-interactuan-danza-fluida-sobre-lienzo-que-muestra-tonos-vibrantes-patrones-dinamicos-que-capturan-caos-belleza-arte-abstracto_157027-2892.jpg" alt="" />
+                  <div class="p-5">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img class="w-7 h-7 rounded-full shadow-lg" src="https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg" alt="">
+                        <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">@usuario</span>
+                    </div>
+                    <span class="text-xs font-normal text-gray-500 dark:text-gray-400">12-18-2018</span>
+                  </div>
+                </a>
+
+                <a href="#" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 grid  gap-4 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 
+                  dark:border-gray-500">
+                  <img class="rounded-t-lg" src="https://img.freepik.com/foto-gratis/colores-arremolinados-interactuan-danza-fluida-sobre-lienzo-que-muestra-tonos-vibrantes-patrones-dinamicos-que-capturan-caos-belleza-arte-abstracto_157027-2892.jpg" alt="" />
+                  <div class="p-5">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img class="w-7 h-7 rounded-full shadow-lg" src="https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg" alt="">
+                        <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">@usuario</span>
+                    </div>
+                    <span class="text-xs font-normal text-gray-500 dark:text-gray-400">12-18-2018</span>
+                  </div>
+                </a>
+
+                <a href="#" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 grid  gap-4 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 
+                  dark:border-gray-500">
+                  <img class="rounded-t-lg" src="https://img.freepik.com/foto-gratis/colores-arremolinados-interactuan-danza-fluida-sobre-lienzo-que-muestra-tonos-vibrantes-patrones-dinamicos-que-capturan-caos-belleza-arte-abstracto_157027-2892.jpg" alt="" />
+                  <div class="p-5">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img class="w-7 h-7 rounded-full shadow-lg" src="https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg" alt="">
+                        <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">@usuario</span>
+                    </div>
+                    <span class="text-xs font-normal text-gray-500 dark:text-gray-400">12-18-2018</span>
+                  </div>
+                </a>
+                <a href="#" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 grid  gap-4 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 
+                  dark:border-gray-500">
+                  <img class="rounded-t-lg" src="https://img.freepik.com/foto-gratis/colores-arremolinados-interactuan-danza-fluida-sobre-lienzo-que-muestra-tonos-vibrantes-patrones-dinamicos-que-capturan-caos-belleza-arte-abstracto_157027-2892.jpg" alt="" />
+                  <div class="p-5">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img class="w-7 h-7 rounded-full shadow-lg" src="https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg" alt="">
+                        <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">@usuario</span>
+                    </div>
+                    <span class="text-xs font-normal text-gray-500 dark:text-gray-400">12-18-2018</span>
+                  </div>
+                </a>
+
+                <a href="#" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 grid  gap-4 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 
+                  dark:border-gray-500">
+                  <img class="rounded-t-lg" src="https://img.freepik.com/foto-gratis/colores-arremolinados-interactuan-danza-fluida-sobre-lienzo-que-muestra-tonos-vibrantes-patrones-dinamicos-que-capturan-caos-belleza-arte-abstracto_157027-2892.jpg" alt="" />
+                  <div class="p-5">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img class="w-7 h-7 rounded-full shadow-lg" src="https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg" alt="">
+                        <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">@usuario</span>
+                    </div>
+                    <span class="text-xs font-normal text-gray-500 dark:text-gray-400">12-18-2018</span>
+                  </div>
+                </a>
+                <a href="#" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 grid  gap-4 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 
+                  dark:border-gray-500">
+                  <img class="rounded-t-lg" src="https://img.freepik.com/foto-gratis/colores-arremolinados-interactuan-danza-fluida-sobre-lienzo-que-muestra-tonos-vibrantes-patrones-dinamicos-que-capturan-caos-belleza-arte-abstracto_157027-2892.jpg" alt="" />
+                  <div class="p-5">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img class="w-7 h-7 rounded-full shadow-lg" src="https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg" alt="">
+                        <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">@usuario</span>
+                    </div>
+                    <span class="text-xs font-normal text-gray-500 dark:text-gray-400">12-18-2018</span>
+                  </div>
+                </a>
+
+                <a href="#" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 grid  gap-4 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 
+                  dark:border-gray-500">
+                  <img class="rounded-t-lg" src="https://img.freepik.com/foto-gratis/colores-arremolinados-interactuan-danza-fluida-sobre-lienzo-que-muestra-tonos-vibrantes-patrones-dinamicos-que-capturan-caos-belleza-arte-abstracto_157027-2892.jpg" alt="" />
+                  <div class="p-5">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img class="w-7 h-7 rounded-full shadow-lg" src="https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg" alt="">
+                        <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">@usuario</span>
+                    </div>
+                    <span class="text-xs font-normal text-gray-500 dark:text-gray-400">12-18-2018</span>
+                  </div>
+                </a>
+
+
               </div>
             </div>
           </div>
         </section>
 
-        {{-- seccion 5 --}}
-        <section class="pb-16 bg-blueGray-200 relative pt-32">
-          <div
-            class="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
-            style="transform: translateZ(0)"
-          >
+        {{-- footer --}}
+        <footer class="relative bg-blueGray-200 pt-8 pb-6 dark:bg-gray-800">
+          <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20" style="transform: translateZ(0)">
             <svg
               class="absolute bottom-0 overflow-hidden"
               xmlns="http://www.w3.org/2000/svg"
@@ -799,72 +392,12 @@
               y="0"
             >
               <polygon
-                class="text-blueGray-200 fill-current"
+                class="text-blueGray-200 dark:text-gray-800 fill-current"
                 points="2560 0 2560 100 0 100"
               ></polygon>
             </svg>
           </div>
-    
-          <div class="container mx-auto">
-            <div
-              class="flex flex-wrap justify-center bg-white shadow-xl rounded-lg -mt-64 py-16 px-12 relative z-10"
-            >
-              <div class="w-full text-center lg:w-8/12">
-                <p class="text-4xl text-center">
-                  <span role="img" aria-label="love"> 😍 </span>
-                </p>
-                <h3 class="font-semibold text-3xl">
-                  Do you love this Starter Kit?
-                </h3>
-                <p class="text-blueGray-500 text-lg leading-relaxed mt-4 mb-4">
-                  Cause if you do, it can be yours now. Hit the buttons below to
-                  navigate to get the Free version for your next project. Build a
-                  new web app or give an old project a new look!
-                </p>
-                <div class="sm:block flex flex-col mt-10">
-                  <a
-                    href="https://www.creative-tim.com/learning-lab/tailwind/js/overview/notus?ref=njs-index"
-                    target="_blank"
-                    class="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-2 bg-pink-500 active:bg-pink-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-                  >
-                    Get started
-                  </a>
-                  <a
-                    href="https://github.com/creativetimofficial/notus-js?ref=njs-index"
-                    target="_blank"
-                    class="github-star sm:ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-                  >
-                    <i class="fab fa-github text-lg mr-1"></i>
-                    <span>Help With a Star</span>
-                  </a>
-                </div>
-                <div class="text-center mt-16"></div>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {{-- seccion 6 --}}
-        <footer class="relative bg-blueGray-200 pt-8 pb-6">
-          <div
-            class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
-            style="transform: translateZ(0)"
-          >
-            <svg
-              class="absolute bottom-0 overflow-hidden"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-              version="1.1"
-              viewBox="0 0 2560 100"
-              x="0"
-              y="0"
-            >
-              <polygon
-                class="text-blueGray-200 fill-current"
-                points="2560 0 2560 100 0 100"
-              ></polygon>
-            </svg>
-          </div>
           <div class="container mx-auto px-4">
             <div class="flex flex-wrap text-center lg:text-left">
               <div class="w-full lg:w-6/12 px-4">
@@ -873,28 +406,20 @@
                   Find us on any of these platforms, we respond 1-2 business days.
                 </h5>
                 <div class="mt-6 lg:mb-0 mb-6">
-                  <button
-                    class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                    type="button"
-                  >
+                  <button class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                    type="button">
                     <i class="fab fa-twitter"></i>
                   </button>
-                  <button
-                    class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                    type="button"
-                  >
+                  <button class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                    type="button">
                     <i class="fab fa-facebook-square"></i>
                   </button>
-                  <button
-                    class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                    type="button"
-                  >
+                  <button class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                    type="button">
                     <i class="fab fa-dribbble"></i>
                   </button>
-                  <button
-                    class="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                    type="button"
-                  >
+                  <button class="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                    type="button">
                     <i class="fab fa-github"></i>
                   </button>
                 </div>
@@ -902,82 +427,62 @@
               <div class="w-full lg:w-6/12 px-4">
                 <div class="flex flex-wrap items-top mb-6">
                   <div class="w-full lg:w-4/12 px-4 ml-auto">
-                    <span
-                      class="block uppercase text-blueGray-500 text-sm font-semibold mb-2"
-                    >
+                    <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
                       Useful Links
                     </span>
                     <ul class="list-unstyled">
                       <li>
-                        <a
-                          class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                          href="https://www.creative-tim.com/presentation?ref=njs-index"
-                        >
+                        <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                          href="https://www.creative-tim.com/presentation?ref=njs-index">
                           About Us
                         </a>
                       </li>
                       <li>
-                        <a
-                          class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                          href="https://blog.creative-tim.com?ref=njs-index"
-                        >
+                        <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                          href="https://blog.creative-tim.com?ref=njs-index">
                           Blog
                         </a>
                       </li>
                       <li>
-                        <a
-                          class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                          href="https://www.github.com/creativetimofficial?ref=njs-index"
-                        >
+                        <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                          href="https://www.github.com/creativetimofficial?ref=njs-index">
                           Github
                         </a>
                       </li>
                       <li>
-                        <a
-                          class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                          href="https://www.creative-tim.com/bootstrap-themes/free?ref=njs-index"
-                        >
+                        <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                          href="https://www.creative-tim.com/bootstrap-themes/free?ref=njs-index">
                           Free Products
                         </a>
                       </li>
                     </ul>
                   </div>
                   <div class="w-full lg:w-4/12 px-4">
-                    <span
-                      class="block uppercase text-blueGray-500 text-sm font-semibold mb-2"
-                    >
+                    <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
                       Other Resources
                     </span>
                     <ul class="list-unstyled">
                       <li>
-                        <a
-                          class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                          href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-index"
-                        >
+                        <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                          href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-index">
                           MIT License
                         </a>
                       </li>
                       <li>
-                        <a
-                          class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                          href="https://creative-tim.com/terms?ref=njs-index"
-                        >
+                        <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                          href="https://creative-tim.com/terms?ref=njs-index">
                           Terms & Conditions
                         </a>
                       </li>
                       <li>
-                        <a
-                          class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                          href="https://creative-tim.com/privacy?ref=njs-index"
-                        >
+                        <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                          href="https://creative-tim.com/privacy?ref=njs-index">
                           Privacy Policy
                         </a>
                       </li>
                       <li>
-                        <a
-                          class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                          href="https://creative-tim.com/contact-us?ref=njs-index"
-                        >
+                        <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                          href="https://creative-tim.com/contact-us?ref=njs-index">
                           Contact Us
                         </a>
                       </li>
@@ -987,17 +492,13 @@
               </div>
             </div>
             <hr class="my-6 border-blueGray-300" />
-            <div
-              class="flex flex-wrap items-center md:justify-between justify-center"
-            >
+            <div class="flex flex-wrap items-center md:justify-between justify-center">
               <div class="w-full md:w-4/12 px-4 mx-auto text-center">
                 <div class="text-sm text-blueGray-500 font-semibold py-1">
                   Copyright © <span id="get-current-year"></span> Notus Tailwind JS
                   by
-                  <a
-                    href="https://www.creative-tim.com?ref=njs-index"
-                    class="text-blueGray-500 hover:text-blueGray-800"
-                  >
+                  <a href="https://www.creative-tim.com?ref=njs-index"
+                    class="text-blueGray-500 hover:text-blueGray-800">
                     Creative Tim
                   </a>
                   .
@@ -1009,54 +510,6 @@
 
       </body>
       <script src="{{asset('js/plantilla.js')}}"> </script> 
-      <script>
-        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
-      </script>
-      <script>
-        var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
-        // Change the icons inside the button based on previous settings
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            themeToggleLightIcon.classList.remove('hidden');
-        } else {
-            themeToggleDarkIcon.classList.remove('hidden');
-        }
-
-        var themeToggleBtn = document.getElementById('theme-toggle');
-
-        themeToggleBtn.addEventListener('click', function() {
-
-            // toggle icons inside button
-            themeToggleDarkIcon.classList.toggle('hidden');
-            themeToggleLightIcon.classList.toggle('hidden');
-
-            // if set via local storage previously
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                }
-
-            // if NOT set via local storage previously
-            } else {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                }
-            }
-            
-        });
-      </script>
+      <script src="{{asset('js/dark.js')}}"></script>
+      <script src="{{asset('js/darkButton.js')}}"></script>
 </html>
