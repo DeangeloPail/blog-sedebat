@@ -5,7 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'SEDEBAT') }}</title>
+        <title>SEDEBAT</title>
+        <link rel="icon" href="{{asset('img/logosedeba.png')}}" type="image/x-icon">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -42,4 +43,7 @@
 
         @livewireScripts
     </body>
+    
+    <script src="{{asset('js/dark.js')}}"></script>
+    <script src="{{asset('js/darkButton.js')}}"></script>
 </html>
