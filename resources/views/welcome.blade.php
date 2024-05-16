@@ -1,13 +1,15 @@
 <x-guest-layout>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> e0eba7b670154db356ae885cda68ad887d4ea007
         {{-- titulo de landing --}}
         <div class=" mt-28 container mx-auto items-center">
           <h1 class="text-5xl text-center font-extrabold dark:text-white">BLOG SEDEBAT</h1>
           <p class="text-sm text-center  mt-3 font-light dark:text-white">Do quis aliqua ex qui et ad. Amet excepteur nisi incididunt duis ex reprehenderit. Aliquip in sunt adipisicing pariatur veniam. Aute esse sint incididunt aliqua cupidatat commodo deserunt exercitation enim aliquip. Incididunt labore non proident incididunt nostrud enim anim officia nisi est commodo nisi deserunt. Nostrud consectetur laborum esse Lorem ullamco laborum anim adipisicing excepteur. Eiusmod labore fugiat aliquip exercitation dolor Lorem cillum consequat ad deserunt.</p>
         </div>
         
-
         {{-- seccion noticias destacadas--}}
         <section class="mt-[30em] md:mt-[10em] lg:mt-4 header relative items-center flex h-screen max-h-860-px">
           <div class="container mx-auto items-center flex flex-wrap">
