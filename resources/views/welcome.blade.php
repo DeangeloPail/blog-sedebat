@@ -1,7 +1,4 @@
 <x-guest-layout>
-
-
-
         {{-- navegador --}}
         <nav class="dark:bg-gray-600 top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
           <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
@@ -364,7 +361,4 @@
             </div>
           </div>
         </section>
-
-       
-
-      </x-guest-layout>
+</x-guest-layout>
