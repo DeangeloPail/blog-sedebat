@@ -17,12 +17,13 @@
     </head>
     <body class="text-blueGray-700 antialiased dark:bg-gray-800">
 
+
         {{-- navegador --}}
         <nav class="dark:bg-gray-600 top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
           <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
             <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                 <a class=" flex text-blueGray-700 text-2xl font-bold leading-relaxed mr-4 py-2 whitespace-nowrap uppercase" 
-                    href="{{ url('/welcome') }}">
+                    href="{{ url('/') }}">
                     <img src="{{asset('img/logosedeba.png')}}" class="h-10 flex-initial mr-3">
                     <span class="flex-initial dark:text-white"> SEDEBAT</span>
                 </a>
@@ -37,13 +38,13 @@
               <ul class="flex flex-col lg:flex-row list-none lg:ml-auto items-center dark:bg-gray-600">
                 <li class="inline-block relative">
                   <a class=" dark:text-gray-300 dark:hover:text-white hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                    href="{{ url('/welcome') }}">
+                    href="{{ url('/') }}">
                     Inicio
                   </a>
                 </li>
                 <li class="inline-block relative">
                   <a class=" dark:text-gray-300 dark:hover:text-white hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                    href="#blog">
+                    href="{{ url('/blog') }}">
                     Blog
                   </a>
                 </li>
@@ -109,15 +110,16 @@
         {{-- titulo de landing --}}
         <div class=" mt-28 container mx-auto items-center">
           <h1 class="text-5xl text-center font-extrabold dark:text-white">BLOG SEDEBAT</h1>
-          <p class="text-sm text-center  mt-3 mb-[48em]  md:mb-64 lg:mb-9 font-light dark:text-white">Do quis aliqua ex qui et ad. Amet excepteur nisi incididunt duis ex reprehenderit. Aliquip in sunt adipisicing pariatur veniam. Aute esse sint incididunt aliqua cupidatat commodo deserunt exercitation enim aliquip. Incididunt labore non proident incididunt nostrud enim anim officia nisi est commodo nisi deserunt. Nostrud consectetur laborum esse Lorem ullamco laborum anim adipisicing excepteur. Eiusmod labore fugiat aliquip exercitation dolor Lorem cillum consequat ad deserunt.</p>
+          <p class="text-sm text-center  mt-3 font-light dark:text-white">Do quis aliqua ex qui et ad. Amet excepteur nisi incididunt duis ex reprehenderit. Aliquip in sunt adipisicing pariatur veniam. Aute esse sint incididunt aliqua cupidatat commodo deserunt exercitation enim aliquip. Incididunt labore non proident incididunt nostrud enim anim officia nisi est commodo nisi deserunt. Nostrud consectetur laborum esse Lorem ullamco laborum anim adipisicing excepteur. Eiusmod labore fugiat aliquip exercitation dolor Lorem cillum consequat ad deserunt.</p>
         </div>
+        
 
         {{-- seccion noticias destacadas--}}
-        <section class="header relative pt-96 sm:my-0 sm:pb-0 items-center flex h-screen max-h-860-px  my-[30em] pb-[30em]">
+        <section class="mt-[30em] md:mt-[10em] lg:mt-4 header relative items-center flex h-screen max-h-860-px">
           <div class="container mx-auto items-center flex flex-wrap">
-            <div class="w-full px-4 mt-[40em] sm:mt-[20em] md:mt-[65em] lg:mt-0">
+            <div class="w-full px-4 lg:mt-0">
               <h4 class="text-2xl font-bold text-center mb-10 dark:text-white">Articulos destacados</h4>
-              <div class="grid md:grid-cols-2 md:row-3 lg:grid-rows-3 lg:grid-cols-3 grid-cols-1 grid-rows-5 gap-4">
+              <div class="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 grid-rows-auto gap-4">
                 <a href="#" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-500">
                   <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in asdasd asdasd asds  sdfsdf fsdfsd sdfsdf  sfdsdfsdf sfsdf Claim?</h5>
                   <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits: Laborum quis aute sit aliquip veniam dolor esse consectetur irure esse id dolore. Anim est do ea excepteur sit cillum anim ullamco </p>
@@ -188,7 +190,7 @@
         </section>
 
         {{-- seccion ultimas noticias --}}
-        <section class="mt-[75em] sm:mt-[85em] pb-10 relative bg-blueGray-200 dark:bg-gray-500">
+        <section class="mt-[35em] md:mt-[20em] lg:mt-16 pb-10 relative bg-blueGray-200 dark:bg-gray-500">
           <div class="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
             style="transform: translateZ(0)">
             <svg class="absolute bottom-0 overflow-hidden"
@@ -229,7 +231,7 @@
               <h3 class="text-3xl font-bold mt-20 ml-6 mb-10 dark:text-white">Ultimos articulos de la semana</h3>
 
               {{-- notias --}}
-              <div class="grid sm:grid-rows-6 lg:grid-rows-3 ml-6 sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 grid-rows-5 gap-4">
+              <div class="grid ml-6 sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 grid-rows-auto gap-4">
 
                 <a href="#" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 grid  gap-4 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 
                   dark:border-gray-500">
@@ -380,7 +382,7 @@
         </section>
 
         {{-- footer --}}
-        <footer class="relative bg-blueGray-200 pt-8 pb-6 dark:bg-gray-800">
+        <footer class="relative bg-blueGray-100 pt-8 pb-6 dark:bg-gray-800">
           <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20" style="transform: translateZ(0)">
             <svg
               class="absolute bottom-0 overflow-hidden"
@@ -392,7 +394,7 @@
               y="0"
             >
               <polygon
-                class="text-blueGray-200 dark:text-gray-800 fill-current"
+                class="text-blueGray-100 dark:text-gray-800 fill-current"
                 points="2560 0 2560 100 0 100"
               ></polygon>
             </svg>
