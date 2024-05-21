@@ -16,13 +16,25 @@ class WelcomeController extends Controller
         ->where('news.destacada', '=', true)
         ->get();
 
-        $latestNews = News::latest('created_at')->first();
+        $latestNews = DB::table('news')
+        ->join('users', 'news.user_id', '=', 'users.id')
+        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'news.resumen', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
+        ->latest('news.created_at')
+        ->first();
+
+        $latestWeekNews = DB::table('news')
+        ->join('users', 'news.user_id', '=', 'users.id')
+        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'news.resumen', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
+        ->orderBy('news.created_at', 'desc')
+        ->skip(1)
+        ->take(9)
+        ->get();
 
         // $news = News::where('destacada', true)->get();
 
         // $news = $news->toArray();
 
-        return view('welcome', compact('news', 'latestNews'));
+        return view('welcome', compact('news', 'latestNews', 'latestWeekNews'));
     }
     public function tramites()
     {

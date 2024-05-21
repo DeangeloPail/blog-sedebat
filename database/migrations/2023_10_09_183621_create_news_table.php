@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('contenido', 1000);
             $table->boolean('destacada')->default(false);
             $table->text('descripcion_img', 40)->nullable();
-            $table->text('resumen', 255)->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

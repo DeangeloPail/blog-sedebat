@@ -115,7 +115,7 @@
     </style>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="w-full mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="py-12">
@@ -123,11 +123,11 @@
                             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
 
                                 <form action="{{ Route('news.store') }}" enctype="multipart/form-data" method="POST"
-                                    class="grid grid-flow-row-dense grid-cols-2 max-sm:grid-cols-1">
+                                    class="grid grid-flow-row-dense  max-sm:grid-cols-1">
 
                                     @csrf
 
-                                    <div class="col-span-1 mx-auto w-80 max-sm:w-full  md:w-full lg:w-full"
+                                    <div class="col-span-1 mx-auto w-80 max-sm:w-full max-w-[50vw] mb-10 h-[40vh] md:w-full lg:w-full"
                                         id="wrapper">
                                         <h1>Suelta la imagen</h1>
                                         <span>o</span>
@@ -142,7 +142,7 @@
                                         </div>
                                         <input type='text' name='descripcion_img' placeholder='Descripcion de la imagen'>
                                     </div>
-                                    <div class="col-span-1 my-auto w-full py-2 max-sm:pl-0 pl-20 mx-auto mr-0">
+                                    <div class="col-span-1 my-auto w-full py-2 max-sm:pl-0 pl-20 mx-auto -ml-10">
                                         <div class="relative z-0 w-full mb-6 group">
                                             <input type="text" id="titulo"
                                                 name="titulo"class=" font-bold	 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -162,7 +162,7 @@
                                                             class="text-black p-2 underline rounded hover:text-gray-400">Underline</button>
                                                     </div>
                                                     <div contenteditable="true" id="editor"
-                                                        class="bg-gray-50 overflow-auto p-2 border-4 rounded h-40 w-full">
+                                                        class="bg-gray-50 overflow-auto p-2 border-4 rounded h-80 w-full">
                                                     </div>
                                                 </div>
                                             </div>

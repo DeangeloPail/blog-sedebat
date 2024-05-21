@@ -64,13 +64,13 @@
                                                             class="text-black p-2 underline rounded hover:text-gray-400">Underline</button>
                                                     </div>
                                                     <div contenteditable="true" value="{{ $news['contenido'] }}" id="editor"
-                                                        class="bg-gray-50 overflow-auto p-2 border-4 rounded h-40 w-full">
+                                                        class="bg-gray-50 overflow-auto p-2 border-4 rounded ">
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="container mx-auto p-4">
-                                                <textarea id="output" name="contenido" class="bg-gray-100 p-0 m-0 rounded w-full" readonly></textarea>
+                                                <textarea id="output" name="contenido" class="bg-gray-100 p-0 m-0 rounded " readonly></textarea>
                                             </div>
                                             <label for="contenido"
                                                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Contenido</label>

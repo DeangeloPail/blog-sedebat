@@ -39,7 +39,7 @@
         <aside class="w-full lg:w-1/4 px-2 z-50 fixed max-lg:hidden top-36 -right-4">
             <!-- Noticias relacionadas -->
             <div class="related-news mb-6">
-                <h3 class="text-xl font-bold ">Otras Noticias</h3>
+                <h3 class="text-xl font-bold ">Otros Articulos</h3>
 
                 <!-- Repite el div 'related-news-item' para cada noticia relacionada -->
             </div>

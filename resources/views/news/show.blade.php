@@ -78,7 +78,7 @@
                                     <label for="first_name"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contenido</label>
                                     <div contenteditable="true" id="editor"
-                                        class="bg-gray-50 overflow-y-auto overflow-x-clip p-2 border-4 rounded h-60 w-full">
+                                        class="bg-gray-50 overflow-y-auto overflow-x-clip p-2 border-4 rounded h-[40vh] w-full">
                                         <?= $news['contenido'] ?>
                                     </div>
                                 </div>

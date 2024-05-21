@@ -44,7 +44,6 @@ class NewsController extends Controller
         $news = new News();
         $news->titulo = $request->titulo;
         $news->contenido = $request->contenido;
-        $news->resumen = $this->summaryNews($request->contenido);
         $news->descripcion_img = $request->descripcion_img;
         $news->user_id = Auth::user()->id;
 
@@ -120,10 +119,6 @@ class NewsController extends Controller
 
         $date = date('d-m-Y-H:i:s');
         $date = str_replace(':', "", $date);
-        $news->resumen = $this->summaryNews($request->contenido);
-        // $news->titulo = $request->titulo;
-        // $news->contenido = $request->contenido;
-        $news->resumen = $this->summaryNews($request->contenido);
 
         if ($request->hasFile("img")) {
             $img = $request->file("img");
@@ -181,10 +176,10 @@ class NewsController extends Controller
     {
 
         $news = DB::table('news')
-        ->join('users', 'news.user_id', '=', 'users.id')
-        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'news.resumen', 'users.name', 'users.email', 'news.created_at')
-        ->where('news.id', '=', $id)
-        ->first();
+            ->join('users', 'news.user_id', '=', 'users.id')
+            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'news.resumen', 'users.name', 'users.email', 'news.created_at')
+            ->where('news.id', '=', $id)
+            ->first();
 
         $newsAll = News::all();
         $newsCant = $newsAll->count();
@@ -235,13 +230,7 @@ class NewsController extends Controller
         return view('news.guestShow', compact('news', 'firstNews', 'secondNews'));
     }
 
-    public function summaryNews($parrafo)
-    {
-        $array = explode('</div>', $parrafo);
-        $summary = $array[0].'</div>';
-
-        return $summary;
-    }
+    
 
     public function guestNews()
     {
