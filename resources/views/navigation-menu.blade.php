@@ -29,11 +29,15 @@
                     </x-nav-link>
                 </div>
 
+                @if (Auth::user()->name == 'admin')
+
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('register')}}" :active="request()->routeIs('/register')">
                         {{ __('Registro de Usuario') }}
                     </x-nav-link>
                 </div>
+
+                @endif
             </div>
 
             <div class="flex justify-end">
