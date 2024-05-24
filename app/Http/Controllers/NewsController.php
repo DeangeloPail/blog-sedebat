@@ -26,14 +26,14 @@ class NewsController extends Controller
         {
             $News =  DB::table('news')
             ->join('users', 'news.user_id', '=', 'users.id')
-            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'news.resumen', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
+            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
             ->where('users.name', '=', "$usuario")
             ->orderBy('destacada', 'DESC')
             ->paginate(15);
         }else{
             $News =  DB::table('news')
             ->join('users', 'news.user_id', '=', 'users.id')
-            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'news.resumen', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
+            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
             ->orderBy('destacada', 'DESC')
             ->paginate(15);
         }

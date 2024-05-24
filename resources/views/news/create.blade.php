@@ -41,7 +41,6 @@
         #wrapper {
 
             padding: 5rem;
-            background: #f1f1f1;
             display: flex;
             justify-content: center;
             flex-direction: column;
@@ -53,7 +52,6 @@
         #wrapper:before {
             content: '';
             position: absolute;
-            ;
             width: 110%;
             height: 110%;
             left: -25px;
@@ -127,7 +125,7 @@
 
                                     @csrf
 
-                                    <div class="col-span-1 mx-auto w-80 max-sm:w-full max-w-[50vw] mb-10 h-[40vh] md:w-full lg:w-full"
+                                    <div class="col-span-1 mx-auto border-2 border-solid dark:border-slate-700 border-slate-200 bg-gray-50 dark:bg-gray-600 w-80 max-sm:w-full max-w-[50vw] mb-10 h-[40vh] md:w-full lg:w-full"
                                         id="wrapper">
                                         <h1>Suelta la imagen</h1>
                                         <span>o</span>
@@ -140,7 +138,7 @@
                                         <div id="file-count"></div>
                                         <div id="file-preview">
                                         </div>
-                                        <input type='text' name='descripcion_img' placeholder='Descripcion de la imagen'>
+                                        <input class="rounded-lg dark:bg-gray-700" type='text' name='descripcion_img' placeholder='Descripcion de la imagen'>
                                     </div>
                                     <div class="col-span-1 my-auto w-full py-2 max-sm:pl-0 pl-20 mx-auto -ml-10">
                                         <div class="relative z-0 w-full mb-6 group">
@@ -153,22 +151,22 @@
                                         <div class="relative z-0 w-full mb-6 group">
                                             <div class="container mx-auto pt-4">
                                                 <div class=" rounded-lg py-4 px-2">
-                                                    <div class="mb-4 bg-gray-100 rounded-md">
+                                                    <div class="mb-4 bg-gray-100 rounded-md  dark:bg-gray-600">
                                                         <button id="boldButton"
-                                                            class=" text-black  p-2 font-bold rounded hover:text-gray-400">Bold</button>
+                                                            class=" text-black  p-2 font-bold dark:text-white ease-in duration-100 dark:hover:text-gray-400 rounded hover:text-gray-400">Bold</button>
                                                         <button id="italicButton"
-                                                            class="text-black p-2 italic rounded hover:text-gray-400">Italic</button>
+                                                            class="text-black p-2 italic rounded dark:text-white ease-in duration-100 dark:hover:text-gray-400 hover:text-gray-400">Italic</button>
                                                         <button id="underlineButton"
-                                                            class="text-black p-2 underline rounded hover:text-gray-400">Underline</button>
+                                                            class="text-black p-2 underline rounded dark:text-white ease-in duration-100 dark:hover:text-gray-400 hover:text-gray-400">Underline</button>
                                                     </div>
                                                     <div contenteditable="true" id="editor"
-                                                        class="bg-gray-50 overflow-auto p-2 border-4 rounded h-80 w-full">
+                                                        class="bg-gray-200 overflow-auto p-2 text-black dark:border-gray-500 border-2 rounded h-80 w-full">
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="container mx-auto p-4">
-                                                <textarea id="output" name="contenido" class="bg-gray-100 p-0 m-0 rounded w-full" readonly></textarea>
+                                                <textarea id="output" name="contenido" class=" p-0 m-0 rounded w-full" readonly></textarea>
                                             </div>
 
                                             <label for="contenido"
