@@ -25,11 +25,10 @@
 
         {{-- articulos --}}
 
-
-
             @foreach ($news as $new)
                 <a href="{{ route('news.guestShow', $new->id) }}"
                     class=" h-64 transition ease-in-out delay-150 hover:-translate-y-5 hover:scale-100 duration-300 flex flex-col mt-16 w-full items-center bg-white border border-gray-200 rounded-lg shadow lg:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                    
                     <img class="object-cover w-full h-52 rounded-t-lg md:rounded-none md:rounded-s-lg"
                         src="{{ asset("storage/images/news/{$new->img}") }}" alt="">
                     <div class="flex flex-col justify-between p-4 leading-normal">

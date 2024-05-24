@@ -21,51 +21,54 @@
     </style>
     <div class="flex flex-wrap w-full column lg:h-full gap-4 content-center">
         @forelse ($News as $New)
-            <div class="md:max-w-sm rounded-lg overflow-hidden w-full shadow-xl mx-4 mb-4">
+            <div class="md:max-w-sm rounded-lg dark:bg-[#2e384e] overflow-hidden w-full shadow-xl mx-4 mb-4">
                 <div class="bg-cover h-64 relative">
 
-                    <button onclick="insIdToModal({{ $New['id'] }})" type="submit" data-modal-target="popup-modal"
+                    <button onclick="insIdToModal({{ $New->id }})" type="submit" data-modal-target="popup-modal"
                         data-modal-toggle="popup-modal"
                         class="mt-4 text-3xl absolute z-40 right-6 text-red-500 hover:text-4xl hover:text-red-400 ease-in duration-75 font-bold"><i
                             class="bi bi-x-square-fill"></i></button>
+                    @if (Auth::user()->name == 'admin')
                         <div class="star-contain z-40">
-                            <a href="{{ route('news.stared', $New['id']) }} " >
+                            <a href="{{ route('news.stared', $New->id) }} ">
                                 <div
                                     class="text-gray-400 starred absolute z-30 left-3 top-3 focus:outline-none font-xl text-xl p-2.5 text-center inline-flex items-center dark:border-yellow-500 dark:text-yellow-500 dark:hover:text-white dark:focus:ring-yellow-800 dark:hover:bg-yellow-500">
                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="text-gray-400 w-6 {{ $New['destacada'] ? 'active' : 'no-active' }} active:text-yellow-400 h-auto hover:text-yellow-400 hover:scale-125 fill-current ease-in duration-75 hover:stroke-yellow-500/50"
+                                        class="text-gray-400 w-6 {{ $New->destacada ? 'active' : 'no-active' }} active:text-yellow-400 h-auto hover:text-yellow-400 hover:scale-125 fill-current ease-in duration-75 hover:stroke-yellow-500/50"
                                         wire:click="giveRating(1)" viewBox="0 0 16 16">
                                         <path
                                             d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
                                         </path>
                                     </svg>
-        
+
                                     <span class="sr-only">Icon description</span>
                                 </div>
                             </a>
                         </div>
-                    
+                    @endif
+
+
                     <a href="{{ Route('news.show', $New->id) }}">
                         <img class="h-full w-full ease-in duration-75 hover:opacity-30 hover:cursor-pointer"
-                            src="{{ asset("storage/images/news/{$New['img']}") }}"
+                            src="{{ asset("storage/images/news/{$New->img}") }}"
                             alt="Strumble head lighthouse overlooking the sea" />
                     </a>
 
                 </div>
                 <div class="px-6 py-4">
-                    <div class="font-bold text-2xl mb-2 text-gray-700">
-                        {{ $New['titulo'] }}
+                    <div class="font-bold text-2xl dark:text-gray-200 mb-2 text-gray-700">
+                        {{ $New->titulo }}
                     </div>
 
                 </div>
                 <div class="px-6 mt-2 py-2">
-                    <p class="text-sm"> Fecha de creación: <br> {{ $New['created_at'] }}</p>
+                    <p class="text-sm dark:text-gray-300"> Fecha de creación: <br> {{ $New->created_at }}</p>
                     <a href="{{ Route('news.show', $New->id) }}"
                         class="w-full inline-block py-2 text-right border-t-2 border-gray-400 text-yellow-500 font-bold text-lg hover:text-yellow-700 active:text-black"><i
                             class="bi bi-eye-fill"></i> Visualizar</a>
                 </div>
             </div>
-            
+
 
         @empty
             <div class="w-full">
@@ -75,24 +78,24 @@
 
         <div class="md:max-w-sm rounded-lg overflow-hidden w-full shadow-xl mx-4 mb-4">
             <a href="{{ Route('news.create') }}">
-            
-            <div class="bg-cover h-full relative bg-gray-300 hover:bg-gray-200 ease-in duration-75">
-                <div class="absolute right-40 top-44 opacity-50 ">
 
-                            <img class="h-20 w-20 z-20 hover:cursor-pointer"
-                                src="{{ asset("storage/images/assets/add.png") }}"
-                                alt="Strumble head lighthouse overlooking the sea" />
-                        
+                <div class="bg-cover h-full relative bg-gray-300 hover:bg-gray-200 ease-in duration-75">
+                    <div class="absolute right-40 top-44 opacity-50 ">
+
+                        <img class="h-20 w-20 z-20 hover:cursor-pointer"
+                            src="{{ asset('storage/images/assets/add.png') }}"
+                            alt="Strumble head lighthouse overlooking the sea" />
+
+
+                    </div>
+
 
                 </div>
-                
-
-            </div>
             </a>
         </div>
     </div>
     <div class="flex justify-end pr-8">
-        {{ $News->links() }}   
+        {{ $News->links() }}
     </div>
 
     @if (isset($New))
@@ -121,7 +124,7 @@
 
 
 
-                        <form id="deleteForm" action="{{ route('news.destroy', $New) }}" method="POST">
+                        <form id="deleteForm" action="{{ route('news.destroy', $New->id) }}" method="POST">
                             @csrf
                             @method('delete')
                             <button data-modal-hide="popup-modal" type="submit"
@@ -139,7 +142,6 @@
                 </div>
             </div>
         </div>
-        
     @endif
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
@@ -149,17 +151,16 @@
             $('#deleteForm').attr("action", route)
         }
 
-         var $destacadas = $(".active").toArray().length;
+        var $destacadas = $(".active").toArray().length;
         console.log($destacadas)
         if ($destacadas >= 5) {
             $(".no-active").parent().parent().addClass('prevent');
         }
         console.log($(".pointer-events-none"));
 
-        $(".prevent").on("click", function(e){
+        $(".prevent").on("click", function(e) {
             e.preventDefault();
             alert("No se pueden destacar mas de 3 noticias")
         });
-
     </script>
 </x-app-layout>

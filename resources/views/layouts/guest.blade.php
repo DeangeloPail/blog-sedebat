@@ -60,7 +60,7 @@
                       <nav class=" flex flex-1 justify-end">
                       @auth
                       <a
-                      href="{{ url('/dashboard') }}"
+                      href="{{ url('/news') }}"
                       class=" dark:text-gray-300 dark:hover:text-white hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                                   >
                                   Panel de control

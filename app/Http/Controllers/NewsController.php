@@ -19,7 +19,25 @@ class NewsController extends Controller
      */
     public function index(): View
     {
-        $News = News::orderBy('destacada', 'DESC')->paginate(15);
+
+        $usuario = Auth::user()->name;
+
+        if($usuario != 'admin')
+        {
+            $News =  DB::table('news')
+            ->join('users', 'news.user_id', '=', 'users.id')
+            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
+            ->where('users.name', '=', "$usuario")
+            ->orderBy('destacada', 'DESC')
+            ->paginate(15);
+        }else{
+            $News =  DB::table('news')
+            ->join('users', 'news.user_id', '=', 'users.id')
+            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
+            ->orderBy('destacada', 'DESC')
+            ->paginate(15);
+        }
+
         if (!$News) {
             return redirect()->back()->with('error', 'Item not found');
         }

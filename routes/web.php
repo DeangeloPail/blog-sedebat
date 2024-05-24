@@ -7,6 +7,8 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
+
+
 Route::get('/blog', function () {
     return view('blog');
 });
@@ -24,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('/register', [RegisteredUserController::class, 'store']);
 });
+
 
 Route::middleware([
     'auth:sanctum',
