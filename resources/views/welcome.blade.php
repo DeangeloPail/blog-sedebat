@@ -3,15 +3,14 @@
 
         {{-- titulo de landing --}}
         <div class=" mt-28 container mx-auto items-center">
-          <h1 class="text-5xl text-center font-extrabold dark:text-white">BLOG SEDEBAT</h1>
-          <p class="text-sm text-center  mt-3 font-light dark:text-white">Do quis aliqua ex qui et ad. Amet excepteur nisi incididunt duis ex reprehenderit. Aliquip in sunt adipisicing pariatur veniam. Aute esse sint incididunt aliqua cupidatat commodo deserunt exercitation enim aliquip. Incididunt labore non proident incididunt nostrud enim anim officia nisi est commodo nisi deserunt. Nostrud consectetur laborum esse Lorem ullamco laborum anim adipisicing excepteur. Eiusmod labore fugiat aliquip exercitation dolor Lorem cillum consequat ad deserunt.</p>
+          <h1 class="text-5xl text-center font-extrabold dark:text-white">EL GOCHO DICE</h1>
+          <p class="text-lg text-center mt-10 font-light dark:text-white">"El Gocho Dice" es un vibrante blog que sirve como plataforma para la promoción y exposición de autores y escritores originarios del estado Táchira, Venezuela. En este espacio digital, exploramos la riqueza literaria y cultural de la región, destacando las voces locales y sus contribuciones al mundo de la literatura. Desde la poesía hasta la prosa, desde los relatos cortos hasta las novelas, "El Gocho Dice" celebra la diversidad de estilos y géneros que caracterizan el panorama literario tachirense. Únete a nosotros mientras descubrimos y compartimos las historias y perspectivas únicas que emergen de esta tierra de talento literario inigualable.</p>
         </div>
         
-        {{-- seccion noticias destacadas--}}
-
-        
-
-
+        {{-- seccion autores--}}
+        <div class=" mt-28 mb-28 container mx-auto items-center">
+          <livewire:writers>
+        </div>
 
         {{-- seccion ultimas noticias --}}
         <section class="mt-[35em] md:mt-[20em] lg:mt-16 pb-10 relative bg-blueGray-200 dark:bg-gray-500">
@@ -48,9 +47,8 @@
                   </div>
                 </a>
               @else
-                <p>no hay articulos disponibles</p>
+                <p class="mt-44 items-center">no hay articulos disponibles</p>
               @endif
-
             </div>
           </div>
         
@@ -83,7 +81,7 @@
                     </div>
                   </a>
                 @empty
-                  <p>no hay articulos disponibles</p>
+                <p class="mt-44">no hay articulos disponibles</p>
                 @endforelse
 
 

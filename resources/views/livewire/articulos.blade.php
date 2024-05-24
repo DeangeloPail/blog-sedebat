@@ -45,8 +45,7 @@
                                 <span
                                     class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">{{ $new->name }}</span>
                             </div>
-                            <span
-                                class="text-xs font-normal text-gray-500 dark:text-gray-400">{{ formatearFecha($new->created_at) }}</span>
+                            <span class="text-xs font-normal text-gray-500 dark:text-gray-400">{{ formatearFecha($new->created_at) }}</span>
                         </div>
                     </div>
                 </a>
