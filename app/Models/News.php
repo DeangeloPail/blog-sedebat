@@ -10,4 +10,8 @@ class News extends Model
     use HasFactory;
 
     protected $fillable = ['titulo', 'img', 'contenido', 'destacada', 'descripcion_img'];
+
+    public function writer(){
+        return $this->belongsTo(Writer::class);
+    }
 }

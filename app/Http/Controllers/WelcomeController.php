@@ -12,19 +12,19 @@ class WelcomeController extends Controller
 
         $news = DB::table('news')
         ->join('users', 'news.user_id', '=', 'users.id')
-        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'news.resumen', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
+        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
         ->where('news.destacada', '=', true)
         ->get();
 
         $latestNews = DB::table('news')
         ->join('users', 'news.user_id', '=', 'users.id')
-        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'news.resumen', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
+        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
         ->latest('news.created_at')
         ->first();
 
         $latestWeekNews = DB::table('news')
         ->join('users', 'news.user_id', '=', 'users.id')
-        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'news.resumen', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
+        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
         ->orderBy('news.created_at', 'desc')
         ->skip(1)
         ->take(9)
