@@ -6,6 +6,8 @@
     <x-input class="w-full mt-2 h-8 px-2" placeholder="{{ $placeholder }}" wire:model.live='stringTags'
         wire:keydown.enter='tagsLoad' />
 
+
+
     <div id="tags-container " class="mt-2 flex flex-wrap gap-2">
         @forelse ($arrayTags as $key => $tag)
             <p wire:click='deleteTag({{ $key }})'

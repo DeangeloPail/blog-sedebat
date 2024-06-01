@@ -20,8 +20,9 @@ class WriterCreateForm extends Form
     #[Rule('min:5')]
     public $profession;
 
+    #[Rule('required|min:5')]
     public $studies;
-    #[Rule('min:5')]
+
     public $description;
 
     public $image;
@@ -30,6 +31,7 @@ class WriterCreateForm extends Form
     {
 
         $this->validate();
+
 
         $writer = Writer::create(
             $this->only('name', 'last_name', 'email', 'location', 'profession', 'location', 'studies', 'description')

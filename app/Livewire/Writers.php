@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Livewire\Forms\WriterCreateForm;
 use App\Livewire\Forms\WriterEditForm;
 use App\Models\Writer;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -29,9 +30,9 @@ class Writers extends Component
     public function save()
     {
         $this->writerCreated->studies = implode(',', $this->arrayTags);
-
         $this->writerCreated->save();
-        // $this->arrayTags = [];
+
+        $this->arrayTags = [];
         $this->writers = Writer::all();
 
         $this->writerCreated->image = '';
@@ -58,12 +59,13 @@ class Writers extends Component
     }
 
 
-
+    #[On('delete-writer')]
     public function delete($writerId)
     {
+
         $writer = Writer::find($writerId);
 
-        $writer->delete();
+        $writer->each->delete();
 
         $this->writers = Writer::all();
         $this->dispatch('writer-deleted', 'Se elimino el registro');

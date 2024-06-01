@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('descripcion_img', 40)->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('writer_id');
+            $table->unsignedBigInteger('writer_id')->nullable();
             $table->foreign('writer_id')->references('id')->on('writers');
             $table->timestamps();
         });
