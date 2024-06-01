@@ -1,153 +1,465 @@
 <div>
     <div class="bg-white mb-8 dark:bg-gray-800 dark:text-gray-200 shadow rounded-lg py-4">
         <form class="mx-4" wire:submit="save">
-            <div class="mb-4">
-                <x-label>
-                    Nombre
-                </x-label>
-                <x-input class="w-full" wire:model.live='postCreated.title' />
-                <x-input-error for="postCreated.title" />
+
+            <div class="flex gap-5">
+                <div class="mb-4 w-full">
+                    <x-label>
+                        Nombre
+                    </x-label>
+                    <x-input class="w-full mt-2 h-8 px-2" placeholder="Pedro" wire:model.live='writerCreated.name' />
+                    <x-input-error for="writerCreated.name" />
+                </div>
+
+                <div class="mb-4 w-full">
+                    <x-label>
+                        Apellido
+                    </x-label>
+                    <x-input class="w-full mt-2 h-8 px-2" placeholder="Peréz"
+                        wire:model.live='writerCreated.last_name' />
+                    <x-input-error for="writerCreated.last_name" />
+                </div>
             </div>
 
-            <div>
-                <x-label>
-                    contenido
-                </x-label>
-                <x-textarea class="w-full" wire:model.live='postCreated.content'></x-textarea>
-                <x-input-error for="postCreated.content" />
+            <div class="flex gap-5">
+                <div class="mb-4 w-full">
+                    <x-label>
+                        Email
+                    </x-label>
+                    <x-input class="w-full mt-2 h-8 px-2" placeholder="pedro@gmail.com"
+                        wire:model.live='writerCreated.email' />
+                    <x-input-error for="writerCreated.email" />
+                </div>
 
+                <div class="mb-4 w-full">
+                    <x-label>
+                        Direccion
+                    </x-label>
+                    <x-input class="w-full mt-2 h-8 px-2" placeholder="Estado y ciudad"
+                        wire:model.live='writerCreated.location' />
+                    <x-input-error for="writerCreated.location" />
+                </div>
             </div>
 
-            <div class="mb-4">
-                <x-label>
-                    Categoria
-                </x-label>
+            <div class="flex gap-5">
+                <div class="mb-4 w-full">
+                    <x-label>
+                        Profesion
+                    </x-label>
+                    <x-input class="w-full mt-2 h-8 px-2" placeholder="Poeta"
+                        wire:model.live='writerCreated.profession' />
+                    <x-input-error for="writerCreated.profession" />
+                </div>
 
-                <x-select class="w-full" wire:model='postCreated.category_id'>
-                    <option value="" disabled>Seleleccione una categoria</option>
-                    @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </x-select>
-                <x-input-error for="postCreated.category_id" />
+                <div class="mb-4 w-full">
 
+                    <livewire:tags-input label="Estudios" placeholder="Ingresa los estudios" :arrayTags="$arrayTags">
+                        <p id="tags-helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                            Separa
+                            los estudios con comas, ejemplo: Ingenieria, Medicina</p>
+
+                        <x-input-error for="writerCreated.studies" />
+
+                </div>
             </div>
 
-            <div class="mb-4">
-                <x-label>
-                    Etiquetas
-                </x-label>
+            <div x-data="{ photoName: null, photoPreview: null }" class="flex flex-col gap-5"
+                x-on:writer-created.window='photoName = null; photoPreview = null; $refs.photo.value = null;'>
 
-                <ul>
-                    @foreach ($tags as $tag)
-                        <li>
-                            <label>
-                                <x-checkbox wire:model='postCreated.tags' value="{{ $tag->id }}" />
-                                {{ $tag->name }}
-                            </label>
-                        </li>
-                    @endforeach
-                </ul>
-                <x-input-error for="postCreated.tags" />
+                <div class='flex gap-5 w-full'>
 
-            </div>
 
-            <div class="flex justify-end">
-                <x-button>
-                    crear
-                </x-button>
+                    <div class="col-span-6 sm:col-span-4 w-full">
+                        <!-- Profile Photo File Input -->
+                        <input type="file" id="photo" class="hidden"
+                            x-on:writer-created='photoName = null, photoPreview = null, $refs.photo.value = null;'
+                            wire:model.live="writerCreated.image" x-ref="photo"
+                            x-on:change="
+                                    photoName = $refs.photo.files[0].name;
+                                    const reader = new FileReader();
+                                    reader.onload = (e) => {
+                                        photoPreview = e.target.result;
+                                    };
+                                    reader.readAsDataURL($refs.photo.files[0]);
+                        " />
+
+
+                        <x-label for="photo" value="{{ __('Foto de Perfil') }}" />
+
+                        <div class='flex gap-4 justify-around align-end curson-pointer text-orange-300'
+                            x-on:click.prevent="$refs.photo.click()">
+
+                            <!-- Current Profile Photo -->
+                            <div class="mt-2 relative cursor-pointer" x-on:writer-created="!photoPreview"
+                                x-show="! photoPreview">
+                                <img src="{{ asset('img/profile_img.png') }}" alt=""
+                                    class="rounded-full h-32 w-32 object-cover">
+                                <span class="text-4xl absolute -top-2 -right-2">
+                                    <i class="bi bi-pencil-square"></i>
+                                </span>
+                            </div>
+
+                            <!-- New Profile Photo Preview -->
+                            <div class="mt-2 relative cursor-pointer" x-show="photoPreview" style="display: none;">
+                                <span class="block rounded-full h-32 w-32 bg-cover bg-no-repeat bg-center"
+                                    x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
+                                </span>
+                                <span class="text-4xl absolute -top-2 -right-2">
+                                    <i class="bi bi-pencil-square"></i>
+                                </span>
+                            </div>
+
+
+
+                        </div>
+
+
+
+                        <x-input-error for="photo" class="mt-2" />
+                    </div>
+
+
+                    <div class="w-full">
+                        <x-label>
+                            Descripcion
+                        </x-label>
+                        <x-textarea class="w-full mt-2 max-h-28 min-h-10 px-2 h-28" placeholder="Descripción"
+                            wire:model.live='writerCreated.description'></x-textarea>
+                        <x-input-error for="writerCreated.description" />
+
+                    </div>
+
+                </div>
+
+                <div class="flex justify-end">
+                    <x-button>
+                        crear
+                    </x-button>
+                </div>
             </div>
         </form>
 
     </div>
 
-    <div class="bg-white p-6 dark:bg-gray-800 dark:text-gray-200 shadow rounded-lg py-4">
-        <ul class="list-disc list-inside space-y-2">
+    <div>
 
-            @foreach ($posts as $post)
-                <li class="flex justify-between" wire:key="post-{{ $post->id }}">
-                    {{ $post->title }}
+        <div
+            class="flex items-center  justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 dark:bg-gray-900">
+            {{-- <div>
+            <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+                <span class="sr-only">Action button</span>
+                Action
+                <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                </svg>
+            </button>
+            <!-- Dropdown menu -->
+            <div id="dropdownAction" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownActionButton">
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reward</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Promote</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Activate account</a>
+                    </li>
+                </ul>
+                <div class="py-1">
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete User</a>
+                </div>
+            </div>
+            </div> --}}
+            <label for="table-search" class="sr-only">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                    </svg>
+                </div>
+                <input type="text" id="table-search-users"
+                    class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Search for users">
+            </div>
+        </div>
 
-                    <div>
-                        <x-button wire:click="edit( {{ $post->id }} )">
-                            Editar
-                        </x-button>
+        <div class="relative shadow-md overflow-x-auto sm:rounded-lg">
 
-                        <x-danger-button wire:click="destroy({{ $post->id }})">
-                            Eliminar
-                        </x-danger-button>
-                    </div>
-                </li>
-            @endforeach
-        </ul>
+            <table class="w-full shadow text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+
+                        <th scope="col" class="px-6 py-3">
+                            Nombre
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Profesion
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Direccion
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($writers as $writer)
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+                            <th scope="row"
+                                class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                <div>
+                                    <img src="{{ asset("storage/{$writer->img}") }}" alt=""
+                                        class="rounded-full h-12 w-12 object-cover">
+                                </div>
+                                <div class="ps-3">
+                                    <div class="text-base font-semibold">{{ $writer->name }} {{ $writer->last_name }}
+                                    </div>
+                                    <div class="font-normal text-gray-500">{{ $writer->email }}</div>
+                                </div>
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ $writer->profession }}
+                            </td>
+                            <td class="px-6 py-4">
+                                <p>
+                                    {{ $writer->location }}
+                                </p>
+                            </td>
+                            <td class="px-6 py-4">
+                                <!-- Modal toggle -->
+                                <x-button x-data x-on:click="$dispatch('open-modala')"
+                                    wire:click="edit( {{ $writer->id }} )">
+                                    open modal
+                                </x-button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+        </div>
 
     </div>
 
 
-    {{-- formulario de edicion --}}
+    <x-modal id='a' maxWidht='lg' title='Editar Información'>
 
+        <div class="p-2 pt-5">
+            <form class="mx-4" wire:submit="update">
+
+                <div class="flex gap-5">
+                    <div class="mb-4 w-full">
+                        <x-label>
+                            Nombre
+                        </x-label>
+                        <x-input class="w-full mt-2 h-8 px-2" placeholder="Pedro"
+                            wire:model.live='writerEdit.name' />
+                        <x-input-error for="writerEdit.name" />
+                    </div>
+
+                    <div class="mb-4 w-full">
+                        <x-label>
+                            Apellido
+                        </x-label>
+                        <x-input class="w-full mt-2 h-8 px-2" placeholder="Peréz"
+                            wire:model.live='writerEdit.last_name' />
+                        <x-input-error for="writerEdit.last_name" />
+                    </div>
+                </div>
+
+                <div class="flex gap-5">
+                    <div class="mb-4 w-full">
+                        <x-label>
+                            Email
+                        </x-label>
+                        <x-input class="w-full mt-2 h-8 px-2" placeholder="pedro@gmail.com"
+                            wire:model.live='writerEdit.email' />
+                        <x-input-error for="writerEdit.email" />
+                    </div>
+
+                    <div class="mb-4 w-full">
+                        <x-label>
+                            Direccion
+                        </x-label>
+                        <x-input class="w-full mt-2 h-8 px-2" placeholder="Estado y ciudad"
+                            wire:model.live='writerEdit.location' />
+                        <x-input-error for="writerEdit.location" />
+                    </div>
+                </div>
+
+                <div class="flex gap-5">
+                    <div class="mb-4 w-full">
+                        <x-label>
+                            Profesion
+                        </x-label>
+                        <x-input class="w-full mt-2 h-8 px-2" placeholder="Poeta"
+                            wire:model.live='writerEdit.profession' />
+                        <x-input-error for="writerEdit.profession" />
+                    </div>
+
+                    {{-- <div class="mb-4 w-full">
+                        <x-label>
+                            Estudios
+                        </x-label>
+
+                        <x-input class="w-full mt-2 h-8 px-2" placeholder="Ingrese los estudios"
+                            wire:model.live='stringTags' wire:keydown.enter='tagsLoad' />
+
+                        <div id="tags-container " class="mt-2 flex flex-wrap gap-2">
+                            @foreach ($arrayTags as $key => $tag)
+                                <p wire:click='deleteTag({{ $key }})'
+                                    class="dark:text-white bg-gray-600 rounded-md p-2 flex text-sm hover:bg-slate-400 ease-in duration-100 cursor-pointer">
+                                    <span class="pr-2">{{ $tag }}</span>
+                                    <i class="bi bi-x"></i>
+                                </p>
+                            @endforeach
+                        </div>
+
+                        <p id="tags-helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                            Separa
+                            los estudios con comas, ejemplo: Ingenieria, Medicina</p>
+
+
+                        <x-input-error for="writerEdit.studies" />
+                    </div> --}}
+                </div>
+
+                <div x-data="{ photoName: null, photoPreview: null }" class="flex flex-col gap-5"
+                    x-on:writer-updated.window='photoName = null; photoPreview = null; $refs.photo.value = null;'>
+
+                    <div class='flex gap-5 w-full'>
+
+
+                        <div class="col-span-6 sm:col-span-4 w-full">
+                            <!-- Profile Photo File Input -->
+                            <input type="file" id="photo" class="hidden" wire:model.live="writerEdit.image"
+                                x-ref="photo"
+                                x-on:change="
+                                                    photoName = $refs.photo.files[0].name;
+                                                    const reader = new FileReader();
+                                                    reader.onload = (e) => {
+                                                        photoPreview = e.target.result;
+                                                    };
+                                                    reader.readAsDataURL($refs.photo.files[0]);
+                                        " />
+
+
+                            <x-label for="photo" value="{{ __('Foto de Perfil') }}" />
+
+                            <div class='flex gap-4 justify-around align-end curson-pointer text-orange-300'
+                                x-on:click.prevent="$refs.photo.click()">
+
+                                <!-- Current Profile Photo -->
+                                <div class="mt-2 relative cursor-pointer" x-on:writer-created="!photoPreview"
+                                    x-show="! photoPreview">
+                                    <img src="{{ asset('img/profile_img.png') }}" alt=""
+                                        class="rounded-full h-32 w-32 object-cover">
+                                    <span class="text-4xl absolute -top-2 -right-2">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </span>
+                                </div>
+
+                                <!-- New Profile Photo Preview -->
+                                <div class="mt-2 relative cursor-pointer" x-show="photoPreview"
+                                    style="display: none;">
+                                    <span class="block rounded-full h-32 w-32 bg-cover bg-no-repeat bg-center"
+                                        x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
+                                    </span>
+                                    <span class="text-4xl absolute -top-2 -right-2">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </span>
+                                </div>
+
+
+
+                            </div>
+
+
+
+                            <x-input-error for="photo" class="mt-2" />
+                        </div>
+
+
+                        <div class="w-full">
+                            <x-label>
+                                Descripcion
+                            </x-label>
+                            <x-textarea class="w-full mt-2 max-h-28 min-h-10 px-2 h-28" placeholder="Descripción"
+                                wire:model.live='writerEdit.description'></x-textarea>
+                            <x-input-error for="writerEdit.description" />
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="flex items-center p-4 md:p-5 border-t mt-8 border-gray-200 rounded-b dark:border-gray-600">
+                    <button type="submit"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I
+                        accept</button>
+                    <button x-on:click="$dispatch('close-modala')" type="button"
+                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
+                </div>
+            </form>
+
+        </div>
+
+    </x-modal>
+
+
+
+
+
+
+    {{-- <x-modal id='ModalA' maxWidht='lg'>
+
+        <p>Hola soy un modal a</p>
+
+    </x-modal>
+
+
+    <x-button x-data x-on:click="$dispatch('open-modalmodalA')">
+        open modal
+    </x-button> --}}
+    {{-- formulario de edicion --}}
+    {{-- 
 
     <form class="mx-4" wire:submit="update">
-        <x-dialog-modal wire:model="postEdit.open">
+        <x-dialog-modal wire:model="writerEdit.open">
 
             <x-slot name="title">
                 Actualizar Post
             </x-slot>
             <x-slot name="content">
-                <div class="mb-4">
-                    <x-label>
+                <div class="mb-4 ">
+                    <x-label class="mb-2">
                         Nombre
                     </x-label>
-                    <x-input class="w-full" wire:model.live='postEdit.title' />
-                    <x-input-error for="postEdit.title" />
+
                 </div>
 
                 <div>
                     <x-label>
                         contenido
                     </x-label>
-                    <x-textarea class="w-full" wire:model.live='postEdit.content'></x-textarea>
-                    <x-input-error for="postEdit.content" />
+                    <x-textarea class="w-full" wire:model.live='writerEdit.content'></x-textarea>
+                    <x-input-error for="writerEdit.content" />
                 </div>
 
-                <div class="mb-4">
-                    <x-label>
-                        Categoria
-                    </x-label>
 
-                    <x-select class="w-full" wire:model='postEdit.category_id'>
-                        <option value="" disabled>Seleleccione una categoria</option>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
-                    </x-select>
-                    <x-input-error for="postEdit.category_id" />
-
-                </div>
-
-                <div class="mb-4">
-                    <x-label>
-                        Etiquetas
-                    </x-label>
-
-                    <ul>
-                        @foreach ($tags as $tag)
-                            <li>
-                                <label>
-                                    <x-checkbox wire:model='postEdit.tags' value="{{ $tag->id }}" />
-                                    {{ $tag->name }}
-                                </label>
-                            </li>
-                        @endforeach
-                    </ul>
-                    <x-input-error for="postEdit.tags" />
-
-                </div>
 
             </x-slot>
             <x-slot name="footer">
                 <div class="flex justify-end">
-                    <x-danger-button class="mr-2" wire:click="$set('postEdit.open', false)">
+                    <x-danger-button class="mr-2" wire:click="$set('writerEdit.open', false)">
                         Cancelar
                     </x-danger-button>
                     <x-button>
@@ -156,14 +468,26 @@
                 </div>
             </x-slot>
         </x-dialog-modal>
-    </form>
+    </form> --}}
 
-    @push('js')
+
+
+    @script
         <script>
-            Livewire.on('post-created', function(comment) {
-                console.log(comment);
+            $wire.on('writer-created', () => {
+                Swal.fire({
+                    position: "top-end",
+                    title: "Escritor registrado",
+                    toast: true,
+                    timer: 1500,
+                    background: "#66997c",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timerProgressBar: true,
+                    showCloseButton: true
+                });
             });
         </script>
-    @endpush
+    @endscript
 
 </div>

@@ -9,7 +9,7 @@
         
         {{-- seccion autores--}}
         <div class=" mt-28 mb-28 container mx-auto items-center">
-          <livewire:writers>
+          {{-- <livewire:writer> --}}
         </div>
 
         {{-- seccion ultimas noticias --}}

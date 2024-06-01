@@ -19,19 +19,27 @@ class WriterCreateForm extends Form
     public $location;
     #[Rule('min:5')]
     public $profession;
-    #[Rule('min:3')]
+
     public $studies;
     #[Rule('min:5')]
     public $description;
 
+    public $image;
+
     public function save()
     {
+
         $this->validate();
 
         $writer = Writer::create(
             $this->only('name', 'last_name', 'email', 'location', 'profession', 'location', 'studies', 'description')
         );
 
-        $writer->reset();
+        if($this->image){
+            $writer->img = $this->image->store('writers');
+            $writer->save();
+        }
+
+        $this->reset();
     }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('location');
             $table->string('profession')->nullable();
+            $table->string('img')->nullable();
             $table->string('studies')->nullable();
             $table->string('description')->nullable();
             
@@ -33,3 +34,10 @@ return new class extends Migration
         Schema::dropIfExists('writers');
     }
 };
+
+
+
+
+
+
+

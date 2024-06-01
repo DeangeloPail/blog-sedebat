@@ -53,3 +53,13 @@ if (!function_exists('summaryNews')) {
         return trim($textoRecortado);
     }
 }
+
+if (!function_exists('sanitizedString')) {
+    function sanitizedString($string)
+    {
+        $string = trim($string);
+        $string = stripslashes($string);
+        $string = htmlspecialchars($string);
+        return $string;
+    }
+}
