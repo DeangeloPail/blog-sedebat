@@ -16,7 +16,7 @@ Route::get('/blog', function () {
 
 Route::get('/writers', function () {
     return view('writers.index');
-});
+})->name('writers');
 
 
 

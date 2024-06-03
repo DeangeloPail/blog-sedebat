@@ -25,15 +25,15 @@ class NewsController extends Controller
         if($usuario != 'admin')
         {
             $News =  DB::table('news')
-            ->join('users', 'news.user_id', '=', 'users.id')
-            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
-            ->where('users.name', '=', "$usuario")
+            ->join('writers', 'news.writer_id', '=', 'writers.id')
+            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img', 'writers.email', 'news.created_at')
+            ->where('writers.name', '=', "$usuario")
             ->orderBy('destacada', 'DESC')
             ->paginate(15);
         }else{
             $News =  DB::table('news')
-            ->join('users', 'news.user_id', '=', 'users.id')
-            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
+            ->join('writers', 'news.writer_id', '=', 'writers.id')
+            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img', 'writers.email', 'news.created_at')
             ->orderBy('destacada', 'DESC')
             ->paginate(15);
         }
@@ -63,20 +63,22 @@ class NewsController extends Controller
         $news->titulo = $request->titulo;
         $news->contenido = $request->contenido;
         $news->descripcion_img = $request->descripcion_img;
-        $news->user_id = Auth::user()->id;
+        $news->writer_id = $request->writer_id;
 
-        if ($request->hasFile("img")) {
-            $file = $request->file('img');
-            $img = $request->file("img");
-            $nameImg = Str::slug($request->titulo) . "{$date}." . $img->guessExtension();
-            $slash = Controller::returnSlashes();
-            $route = public_path("images{$slash}news{$slash}");
-            // $img->move($route, $nameImg);
-            $file->storeAs('public/images/news', $nameImg);
-            $news->img = $nameImg;
-        }
+        dd($news->writer_id);
 
-        $news->save();
+        // if ($request->hasFile("img")) {
+        //     $file = $request->file('img');
+        //     $img = $request->file("img");
+        //     $nameImg = Str::slug($request->titulo) . "{$date}." . $img->guessExtension();
+        //     $slash = Controller::returnSlashes();
+        //     $route = public_path("images{$slash}news{$slash}");
+        //     // $img->move($route, $nameImg);
+        //     $file->storeAs('public/images/news', $nameImg);
+        //     $news->img = $nameImg;
+        // }
+
+        // $news->save();
 
         return redirect()->route('news.index');
     }
@@ -194,7 +196,7 @@ class NewsController extends Controller
     {
 
         $news = DB::table('news')
-            ->join('users', 'news.user_id', '=', 'users.id')
+            ->join('writers', 'news.writer_id', '=', 'writers.id')
             ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'users.name', 'users.email', 'news.created_at')
             ->where('news.id', '=', $id)
             ->first();

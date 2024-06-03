@@ -20,16 +20,17 @@ class Articulos extends Component
     {
 
         $news =  DB::table('news')
-        ->join('users', 'news.user_id', '=', 'users.id')
-        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
+        ->join('writers', 'news.writer_id', '=', 'writers.id')
+        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img', 'writers.email', 'news.created_at')
         ->when($this->searchingNews,function ($query){
             $query->where('news.titulo', 'like', "%{$this->searchingNews}%")
-                  ->orWhere('users.name', 'like', "%{$this->searchingNews}%");
+                  ->orWhere('writers.name', 'like', "%{$this->searchingNews}%");
         })
         ->orderBy('id', 'desc')
         ->paginate(5, pageName: 'pageArticulo');
 
         return view('livewire.articulos', compact('news'));
+        
     }
 
 
@@ -37,8 +38,8 @@ class Articulos extends Component
 //     public function updatedSearchingNews(){
 
 //         $newsFound = DB::table('news')
-//         ->join('users', 'news.user_id', '=', 'users.id')
-//         ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'news.resumen', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
+//         ->join('writers', 'news.writer_id', '=', 'writers.id')
+//         ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'news.resumen', 'writers.name', 'writers.profile_photo_path', 'writers.email', 'news.created_at')
 //         ->where('news.titulo', '=', "$this->searchingNews")
 //         ->paginate(5);
 
