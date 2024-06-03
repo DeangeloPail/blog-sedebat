@@ -1,10 +1,11 @@
 <x-guest-layout>
-
-
         {{-- titulo de landing --}}
-        <div class=" mt-28 container mx-auto items-center">
+        <div class="absolute top-0 w-full h-full bg-center bg-white opacity-35 bg-cover" style="background-image: url('{{asset('img/AGRICULTURA.jpg')}}');">
+          <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-black"></span>
+        </div>
+        <div class=" mt-28 container mx-auto items-center " style="transform: translateZ(0px)">
           <h1 class="text-5xl text-center font-extrabold dark:text-white">EL GOCHO DICE</h1>
-          <p class="text-lg text-center mt-10 font-light dark:text-white">"El Gocho Dice" es un vibrante blog que sirve como plataforma para la promoción y exposición de autores y escritores originarios del estado Táchira, Venezuela. En este espacio digital, exploramos la riqueza literaria y cultural de la región, destacando las voces locales y sus contribuciones al mundo de la literatura. Desde la poesía hasta la prosa, desde los relatos cortos hasta las novelas, "El Gocho Dice" celebra la diversidad de estilos y géneros que caracterizan el panorama literario tachirense. Únete a nosotros mientras descubrimos y compartimos las historias y perspectivas únicas que emergen de esta tierra de talento literario inigualable.</p>
+          <p class="text-lg text-center mt-10 font-semibold dark:text-white">"El Gocho Dice" es un vibrante blog que sirve como plataforma para la promoción y exposición de autores y escritores originarios del estado Táchira, Venezuela. En este espacio digital, exploramos la riqueza literaria y cultural de la región, destacando las voces locales y sus contribuciones al mundo de la literatura. Desde la poesía hasta la prosa, desde los relatos cortos hasta las novelas, "El Gocho Dice" celebra la diversidad de estilos y géneros que caracterizan el panorama literario tachirense. Únete a nosotros mientras descubrimos y compartimos las historias y perspectivas únicas que emergen de esta tierra de talento literario inigualable.</p>
         </div>
         
         {{-- seccion autores--}}

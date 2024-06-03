@@ -14,6 +14,10 @@ Route::get('/blog', function () {
     return view('blog');
 });
 
+Route::get('/autorProfile', function () {
+    return view('autorProfile');
+});
+
 Route::get('/writers', function () {
     return view('writers.index');
 })->name('writers');
