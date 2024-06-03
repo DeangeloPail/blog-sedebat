@@ -1,13 +1,17 @@
 <div x-data="{ showCard: true }">
 
-    <x-button @click="showCard = ! showCard">Toggle</x-button>
+    <div class='w-full flex ' :class="showCard ? 'justify-end' : 'justify-start'">
+        <button x-html="!showCard ? '<- Agregar escritor' : 'Ver escritores ->'" class="dark:text-white m-3"
+            @click="showCard = ! showCard"></button>
+    </div>
+
 
     <div class='flex'>
 
         <div x-show="showCard" x-transition:enter="transition ease-out duration-1000"
             x-transition:enter-start="opacity-0 -translate-x-full" x-transition:enter-end="opacity-100 translate-x-0"
-            
             class="bg-white mb-8 dark:bg-gray-800 dark:text-gray-200 shadow w-full rounded-lg py-4">
+            <h1 class='mx-5  mb-8 border-b border-gray-300 dark:border-gray-500 p-2 text-2xl'>Agregar escritor</h1>
             <form x-data x-on:submit.prevent class="mx-4">
 
                 <div class="flex gap-5">
@@ -152,7 +156,6 @@
 
         <div x-show="!showCard" x-transition:enter="transition ease-out duration-1000"
             x-transition:enter-start="opacity-0 translate-x-full" x-transition:enter-end="opacity-100 translate-x-0"
-            
             class="w-full">
 
             <div
@@ -192,7 +195,7 @@
                                 stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input type="text" id="table-search-users"
+                    <input type="text" id="table-search-users" wire:model.live='searchWriters'
                         class="block pt-2 ps-10 text-sm bg-white text-gray-900 border border-gray-300 rounded-lg w-80 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Buscar escritores">
                 </div>
@@ -263,8 +266,11 @@
                             </tr>
                         @endforeach
                     </tbody>
-                </table>
 
+                </table>
+                <div class='pt-8'>
+                    {{ $writers->links('vendor.livewire.tailwind') }}
+                </div>
             </div>
 
         </div>

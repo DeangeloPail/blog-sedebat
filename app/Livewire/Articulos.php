@@ -21,7 +21,7 @@ class Articulos extends Component
 
         $news =  DB::table('news')
         ->join('users', 'news.user_id', '=', 'users.id')
-        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'news.resumen', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
+        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'users.name', 'users.profile_photo_path', 'users.email', 'news.created_at')
         ->when($this->searchingNews,function ($query){
             $query->where('news.titulo', 'like', "%{$this->searchingNews}%")
                   ->orWhere('users.name', 'like', "%{$this->searchingNews}%");

@@ -195,7 +195,7 @@ class NewsController extends Controller
 
         $news = DB::table('news')
             ->join('users', 'news.user_id', '=', 'users.id')
-            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'news.resumen', 'users.name', 'users.email', 'news.created_at')
+            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'users.name', 'users.email', 'news.created_at')
             ->where('news.id', '=', $id)
             ->first();
 
@@ -241,7 +241,7 @@ class NewsController extends Controller
 
 
 
-        if (!Storage::exists("public/images/news/{$news->img}")) {
+        if (!Storage::exists("images/news/{$news->img}")) {
             $news['img'] = "default-image.jpg";
         }
 

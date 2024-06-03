@@ -29,7 +29,13 @@
                     </x-nav-link>
                 </div>
 
-                @if (Auth::user()->name == 'admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ url('/writers') }}" :active="request()->routeIs('/writers')">
+                        {{ __('Escritores') }}
+                    </x-nav-link>
+                </div>
+
+                @if (Auth::user()->name == 'Admin')
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('register')}}" :active="request()->routeIs('/register')">
@@ -182,9 +188,14 @@
             <x-responsive-nav-link href="{{ url('/blog') }}" :active="request()->routeIs('/blog')">
                 {{ __('Blog') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('/register')">
-                {{ __('Registro de Usuario') }}
+            <x-responsive-nav-link href="{{ url('/writers') }}" :active="request()->routeIs('/writers')">
+                {{ __('Escritores') }}
             </x-responsive-nav-link>
+            @if (Auth::user()->name == 'Admin')
+                <x-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('/register')">
+                    {{ __('Registro de Usuario') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
         
         <!-- Responsive Settings Options -->

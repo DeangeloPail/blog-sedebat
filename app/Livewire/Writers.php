@@ -7,25 +7,25 @@ use App\Livewire\Forms\WriterEditForm;
 use App\Models\Writer;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
+use Livewire\WithPagination;
 
 class Writers extends Component
 {
 
     use WithFileUploads;
+    use WithPagination;
+
+    #[Url(as:'Escritores')]
+    public $searchWriters = '';
 
     public writerCreateForm $writerCreated;
     public writerEditForm $writerEdit;
 
-    public $writers;
-
     public $arrayTags = [];
 
-    public function mount()
-    {
-        $this->writers = Writer::all();
-    }
 
     public function save()
     {
@@ -33,7 +33,8 @@ class Writers extends Component
         $this->writerCreated->save();
 
         $this->arrayTags = [];
-        $this->writers = Writer::all();
+
+        $this->resetPage(pageName: 'pageWriter');
 
         $this->writerCreated->image = '';
         $this->dispatch('writer-created', 'Se almaceno el registro');
@@ -53,11 +54,9 @@ class Writers extends Component
     public function update()
     {
         $this->writerEdit->update();
-        $this->writers = Writer::all();
 
         $this->dispatch('writer-updated', 'Se actualizo el registro');
     }
-
 
     #[On('delete-writer')]
     public function delete($writerId)
@@ -67,14 +66,20 @@ class Writers extends Component
 
         $writer->each->delete();
 
-        $this->writers = Writer::all();
         $this->dispatch('writer-deleted', 'Se elimino el registro');
     }
 
-
-
     public function render()
     {
-        return view('livewire.writer');
+        $writers = Writer::when($this->searchWriters,function ($query){
+            $query->where('name', 'like', "%{$this->searchWriters}%")
+                  ->orWhere('last_name', 'like', "%{$this->searchWriters}%")
+                  ->orWhere('email', 'like', "%{$this->searchWriters}%")
+                  ->orWhere('profession', 'like', "%{$this->searchWriters}%");
+                })
+            ->orderBy('id', 'desc')
+            ->paginate(5, pageName: 'pageWriter');
+
+        return view('livewire.writer', compact('writers'));
     }
 }

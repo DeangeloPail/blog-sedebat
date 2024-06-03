@@ -115,12 +115,39 @@
     <div class="py-12">
         <div class="w-full mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="py-12">
-                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-
-                                <form action="{{ Route('news.store') }}" enctype="multipart/form-data" method="POST"
+                <div class="p-6 text-gray-900 dark:text-gray-100"
+                    x-data="{
+                        selected : 1,
+                        total: 3,
+                        previous(){
+                            if(this.selected > 1)
+                                this.selected--;
+                        },
+                        next(){
+                            if(this.selected < this.total)
+                                this.selected++;
+                        }
+                    }">
+                    
+                    <div class="w-full mx-auto">
+                        {{-- Step 1 --}}
+                        <div x-show="selected === 1">
+                            Step 1 Content
+                        </div>
+                        {{-- Step 2 --}}
+                        <div x-show="selected === 2">
+                            Step 2 Content
+                        </div>
+                        {{-- Step 3 --}}
+                        <div x-show="selected === 3">
+                            Step 3 Content
+                        </div>
+                    </div>
+                    <div class="text-center my-2">
+                        <button @click="previous" class="bg-purple-300 rounded p-2" :class="{ 'bg-gray-200': selected === 1 }">Previous</button>
+                        <button @click="next" class="bg-purple-300 rounded p-2" :class="{ 'bg-gray-200': selected === total}">Next</button>
+                    </div>
+                                {{-- <form action="{{ Route('news.store') }}" enctype="multipart/form-data" method="POST"
                                     class="grid grid-flow-row-dense  max-sm:grid-cols-1">
 
                                     @csrf
@@ -178,13 +205,10 @@
 
                                     </div>
 
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                                </form> --}}
 
 
-
+                    
                 </div>
             </div>
         </div>
@@ -338,4 +362,20 @@
 
         })();
     </script>
+
+
+<script>
+  function stepper() {
+    return {
+      step: 1,
+      next() {
+          this.step > 3 ? null : this.step = this.step + 1;
+      },
+      prev() {
+          this.step < 2 ? null : this.step = this.step - 1;
+      }
+    }
+  }
+</script>
+    
 </x-app-layout>

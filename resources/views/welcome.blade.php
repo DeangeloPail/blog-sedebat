@@ -29,8 +29,8 @@
               <h3 class="text-3xl font-bold ml-6 mt-10 -mb-6 dark:text-white">Ultimo articulo</h3>
               @if (isset($latestNews))
                 <a href="{{ route('news.guestShow', $latestNews->id) }}" class=" transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 duration-300 flex flex-col mt-16 w-full mx-5 items-center bg-white border border-gray-200 rounded-lg shadow lg:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                  <div>
-                    <img class="object-cover w-full h-full rounded-t-lg md:h-auto md:rounded-none md:rounded-s-lg" src="{{ asset("storage/images/news/{$latestNews->img}") }}" alt="">
+                  <div class='overflow-hidden max-w-[30vw]'>
+                    <img class="object-cover w-full h-full  rounded-t-lg md:h-auto md:rounded-none md:rounded-s-lg" src="{{ asset("storage/images/news/{$latestNews->img}") }}" alt="">
                   </div>
                   <div class="flex flex-col justify-between p-4 leading-normal">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $latestNews->titulo}}</h5>
