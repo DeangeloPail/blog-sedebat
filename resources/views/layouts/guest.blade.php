@@ -48,7 +48,7 @@
                       Blog
                       </a>
                   </li>
-                  
+                                    
                   <li >  
                       @if (Route::has('login'))
                       <nav class=" flex flex-1 justify-end">
