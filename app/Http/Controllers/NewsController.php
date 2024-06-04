@@ -65,20 +65,19 @@ class NewsController extends Controller
         $news->descripcion_img = $request->descripcion_img;
         $news->writer_id = $request->writer_id;
 
-        dd($news->writer_id);
 
-        // if ($request->hasFile("img")) {
-        //     $file = $request->file('img');
-        //     $img = $request->file("img");
-        //     $nameImg = Str::slug($request->titulo) . "{$date}." . $img->guessExtension();
-        //     $slash = Controller::returnSlashes();
-        //     $route = public_path("images{$slash}news{$slash}");
-        //     // $img->move($route, $nameImg);
-        //     $file->storeAs('public/images/news', $nameImg);
-        //     $news->img = $nameImg;
-        // }
+        if ($request->hasFile("img")) {
+            $file = $request->file('img');
+            $img = $request->file("img");
+            $nameImg = Str::slug($request->titulo) . "{$date}." . $img->guessExtension();
+            $slash = Controller::returnSlashes();
+            $route = public_path("images{$slash}news{$slash}");
+            // $img->move($route, $nameImg);
+            $file->storeAs('public/images/news', $nameImg);
+            $news->img = $nameImg;
+        }
 
-        // $news->save();
+        $news->save();
 
         return redirect()->route('news.index');
     }

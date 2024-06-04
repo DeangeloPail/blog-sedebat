@@ -26,7 +26,7 @@ class CreateArticulo extends Component
                   ->orWhere('profession', 'like', "%{$this->searchWriters}%");
                 })
             ->orderBy('id', 'desc')
-            ->paginate(5, pageName: 'pageWriter');
+            ->paginate(8, pageName: 'pageWriter');
 
         return view('livewire.create-articulo', compact('writers'));
     }

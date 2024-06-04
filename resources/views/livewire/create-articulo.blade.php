@@ -168,10 +168,12 @@
                         <div class="max-w-2xl mx-auto my-10">
 
 
-                            <div x-show="selected === 1">
+                            <div x-show="selected === 1" x-transition:enter="transition ease-out duration-1000"
+                                x-transition:enter-start="opacity-0 translate-x-full"
+                                x-transition:enter-end="opacity-100 translate-x-0">
                                 <label for="default-search"
                                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Escritor</label>
-                                <div class="relative my-5">
+                                <div class="relative my-5 ">
                                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -181,23 +183,28 @@
                                     </div>
                                     <input type="search" wire:model.live='searchWriters'
                                         class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Elije al escritor"/>
+                                        placeholder="Elije al escritor" />
                                 </div>
 
-                                <div class="flex w-full gap-2 flex-wrap justify-center">
+                                <div class="flex w-full gap-5 flex-wrap justify-center">
 
-                                <input x-bind:value="selectedWriter" hidden name="writer_id"> 
+                                    <input x-bind:value="selectedWriter" hidden name="writer_id">
+
+
 
                                     @forelse($writers as $writer)
                                         <div @click="selectedWriter = {{ $writer->id }}"
-                                            class="flex hover: justify-center items-centern w-52 gap-4 border py-2 px-3 rounded-lg">
+                                            :class="selectedWriter == {{ $writer->id }} ?
+                                                'dark:border-blue-800 bg-blue-200 border-blue-200 scale-110 dark:bg-blue-800' :
+                                                ''"
+                                            class="flex hover: justify-between items-centern w-52 gap-4 border cursor-pointer hover:scale-110 ease-in duration-200 py-2 px-3 rounded-lg">
 
                                             <div>
                                                 <img src="{{ asset("storage/{$writer->img}") }}" alt=""
                                                     class="rounded-full h-10 w-10 object-cover">
                                             </div>
 
-                                            <div class="flex flex-col justify-center items-center">
+                                            <div class="flex flex-col w-32 justify-center items-center">
 
                                                 <h5 class="text-sm font-medium text-gray-900 dark:text-white">
                                                     {{ $writer->name }} {{ $writer->last_name }}</h5>
@@ -209,12 +216,10 @@
 
 
                                     @empty
-
-                                        No hay escritores registrados
                                     @endforelse
                                     <a href={{ route('writers') }}>
                                         <div
-                                            class="flex justify-center items-centern w-52 gap-4 border py-2 px-3 rounded-lg">
+                                            class="flex hover:scale-110 ease-in duration-200 justify-center items-centern w-52 gap-4 border py-2 px-3 rounded-lg">
 
                                             <div class="text-4xl">
                                                 <i class="bi bi-plus"></i>
@@ -235,7 +240,9 @@
 
                             </div>
 
-                            <div x-show="selected === 2">
+                            <div x-show="selected === 2" x-transition:enter="transition ease-out duration-1000"
+                                x-transition:enter-start="opacity-0 translate-x-full"
+                                x-transition:enter-end="opacity-100 translate-x-0">
                                 <div class="relative z-0 w-full mb-6 group">
                                     <input type="text" id="titulo"
                                         name="titulo"class=" font-bold	 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -243,28 +250,97 @@
                                     <label for="titulo"
                                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Título</label>
                                 </div>
-                                <div class="col-span-1 mt-8 mx-auto border-2 border-solid dark:border-slate-700 border-slate-200 bg-gray-50 dark:bg-gray-600 w-80 max-sm:w-full max-w-[50vw] mb-10 h-[40vh] md:w-full lg:w-full"
-                                    id="wrapper">
-                                    <h1>Suelta la imagen</h1>
-                                    <span>o</span>
-                                    <br />
-                                    <label for="file-upload">Buscar</label>
-                                    <input type="file" name="img" id="file-upload" multiple>
-                                    <br />
+
+                                <div x-data="{ photoName: null, photoPreview: null }" class="flex flex-col"
+                                    x-on:writer-created.window='photoName = null; photoPreview = null; $refs.photo.value = null;'>
+
+                                    <div class='flex w-full'>
 
 
-                                    <div id="file-count"></div>
-                                    <div id="file-preview">
+                                        <div class="col-span-6 sm:col-span-4 w-full">
+                                            <!-- Profile Photo File Input -->
+                                            <input type="file" id="photo" class="hidden" name="img"
+                                                x-on:writer-created='photoName = null, photoPreview = null, $refs.photo.value = null;'
+                                                x-ref="photo"
+                                                x-on:change="
+                                            photoName = $refs.photo.files[0].name;
+                                            const reader = new FileReader();
+                                            reader.onload = (e) => {
+                                                photoPreview = e.target.result;
+                                            };
+                                            reader.readAsDataURL($refs.photo.files[0]);
+                                " />
+
+
+                                            <x-label for="photo" value="{{ __('Imagen de la portada') }}" />
+
+                                            <div class='text-orange-300 ' x-on:click.prevent="$refs.photo.click()">
+
+                                                <!-- Current Profile Photo -->
+                                                <div class="mt-2 relative cursor-pointer p-4"
+                                                    x-on:writer-created="!photoPreview" x-show="! photoPreview">
+
+                                                    <div class="flex items-center justify-center w-full">
+                                                        <label for="dropzone-file"
+                                                            class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                                            <div
+                                                                class="flex flex-col items-center justify-center pt-5 p-10 pb-6">
+                                                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                                                                    aria-hidden="true"
+                                                                    xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                    viewBox="0 0 20 16">
+                                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                                        stroke-linejoin="round" stroke-width="2"
+                                                                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                                                </svg>
+                                                                <p
+                                                                    class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                                                                    <span class="font-semibold">Click to upload</span>
+                                                                    or drag and drop
+                                                                </p>
+                                                                <p class="text-xs text-gray-500 dark:text-gray-400">
+                                                                    SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                                                            </div>
+
+                                                        </label>
+                                                    </div>
+
+
+
+                                                </div>
+
+                                                <!-- New Profile Photo Preview -->
+                                                <div class="mt-2 relative p-4 cursor-pointer w-full hover:opacity-40 ease-in duration-100"
+                                                    x-show="photoPreview" style="display: none;">
+                                                    <span
+                                                        class="block rounded-lg  w-[20xw] h-[37vh] bg-cover bg-no-repeat bg-center"
+                                                        x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
+                                                    </span>
+
+                                                </div>
+
+
+
+                                            </div>
+
+
+
+                                            <x-input-error for="photo" class="mt-2" />
+                                        </div>
+
                                     </div>
-                                    <input class="rounded-lg dark:bg-gray-700" type='text' name='descripcion_img'
-                                        placeholder='Descripcion de la imagen'>
+
+
                                 </div>
+
                             </div>
 
-                            <div x-show="selected === 3">
-                                <div class="col-span-1 my-auto w-full py-2 max-sm:pl-0 pl-20 mx-auto -ml-10">
+                            <div x-show="selected === 3" x-transition:enter="transition ease-out duration-1000"
+                                x-transition:enter-start="opacity-0 translate-x-full"
+                                x-transition:enter-end="opacity-100 translate-x-0">
+                                <div class="col-span-1 my-auto w-full ">
 
-                                    <div class="relative z-0 w-full mb-6 group">
+                                    <div class="relative z-0 w-full group">
                                         <div class="container mx-auto pt-4">
                                             <div class=" rounded-lg py-4 px-2">
                                                 <div class="mb-4 bg-gray-100 rounded-md  dark:bg-gray-600">
@@ -276,32 +352,59 @@
                                                         class="text-black p-2 underline rounded dark:text-white ease-in duration-100 dark:hover:text-gray-400 hover:text-gray-400">Underline</button>
                                                 </div>
                                                 <div contenteditable="true" id="editor"
-                                                    class="bg-gray-200 overflow-auto p-2 text-black dark:border-gray-500 border-2 rounded h-80 w-full">
+                                                    class="bg-gray-200 overflow-auto p-2 text-black dark:border-gray-500 border-2 rounded h-48 w-full">
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="container mx-auto p-4">
+                                        <div class="container mx-auto">
                                             <textarea id="output" name="contenido" class=" p-0 m-0 rounded w-full" readonly></textarea>
                                         </div>
 
                                         <label for="contenido"
                                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Contenido</label>
                                     </div>
-                                    <button type="submit" id="submit"
-                                        class="text-white bg-green-700  hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-full py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"><i
-                                            class="bi bi-cloud-upload"></i> &nbsp;Subir Noticia</button>
 
+                                </div>
+                            </div>
+
+                            <div x-show="selected === 4">
+                                <div class="flex items-center">
+                                    <svg class="flex-shrink-0 w-4 h-4 me-2 dark:text-gray-300" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                                    </svg>
+                                    <span class="sr-only">Info</span>
+                                    <h3 class="text-lg font-medium text-gray-800 dark:text-gray-300">
+                                        ¿Estás seguro de subir el articulo?
+                                    </h3>
+                                </div>
+                                <div class="mt-2 mb-4 text-sm text-gray-800 dark:text-gray-300">
+                                    Estas apunto de subir este articulo asegurate que esta todo correcto, posteriormente podras editar el articulo en el modulo de edicion.
+                                </div>
+                                <div class="flex">
+                                    <button type="submit"
+                                        class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-gray-600 dark:hover:bg-gray-500 dark:focus:ring-gray-800">
+                                        <i class="bi mr-2 text-lg bi-check2-circle"></i> 
+                                        Si, estoy seguro!
+                                    </button>
+                                    <button type="button" @click="selected = 1"
+                                        class="text-gray-800 bg-transparent border border-gray-700 hover:bg-gray-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:ring-gray-800 dark:text-gray-300 dark:hover:text-white"
+                                        data-dismiss-target="#alert-additional-content-5" aria-label="Close">
+                                        Volver al primer paso
+                                    </button>
                                 </div>
                             </div>
 
                         </div>
 
-                        <div class="text-center my-2">
-                            <button type="button" @click="previous" class="rounded p-2"
-                                :class="selected === 1 ? 'bg-gray-200' : 'bg-purple-300 '">Previous</button>
-                            <button type="button" @click="next" class="rounded p-2"
-                                :class="selected === total ? 'bg-gray-200' : 'bg-purple-300 '">Next</button>
+                        <div class="text-center my-2 flex w-full justify-center gap-40">
+                            <button type="button" @click="previous" class="rounded text-5xl duration-200 hover:text-blue-600 p-2"
+                                :class="selected === 1 ? 'hidden' : ''"><i class="bi bi-arrow-left-short"></i></button>
+                                
+                            <button type="button" @click="next" class="rounded text-5xl ease-in duration-200 hover:text-blue-600 p-2"
+                                :class="selected === total ? 'hidden' : ' '"><i class="bi bi-arrow-right-short"></i></button>
                         </div>
 
                 </form>
@@ -405,119 +508,5 @@
         const content = editor.innerHTML;
         output.value = content;
     }
-
-
-
-
-    (function() {
-        const wrapper = document.getElementById('wrapper');
-        const form = document.getElementById('form');
-        const fileUpload = document.getElementById('file-upload');
-        const fileCount = document.getElementById('file-count');
-        const preview = document.getElementById('file-preview');
-        const regex = /\.(jpg|png|jpeg)$/;
-        let files = [];
-
-        const dragEvents = ['dragstart, dragover', 'dragend', 'dragleave', 'drop'];
-        dragEvents.forEach((eventTarget) => {
-            wrapper.addEventListener(eventTarget, (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('fired');
-            });
-        });
-
-        window.addEventListener('drop', (e) => {
-            e.preventDefault();
-            e.stopImmediatePropagation();
-        });
-        window.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            e.stopImmediatePropagation();
-        });
-
-        function dragstart() {
-            wrapper.classList.add('highlight');
-            console.log('dragstart');
-        }
-
-        function dragover() {
-            wrapper.classList.add('highlight');
-            console.log('dragover');
-        }
-
-        function dragend() {
-            wrapper.classList.remove('highlight');
-        }
-
-        function dragleave() {
-            wrapper.classList.remove('highlight');
-        }
-
-        function checkFile(selectedFiles) {
-            for (let file of selectedFiles) {
-                if (regex.test(file.name)) {
-                    files.push(file);
-                } else {
-                    alert('You can only upload images');
-                }
-            }
-            createPreview(files);
-        }
-
-        function dropFiles(e) {
-            console.log('drop');
-            const transferredFiles = e.dataTransfer.files;
-            checkFile(transferredFiles);
-            console.log(files);
-        }
-
-        function createPreview(filelist) {
-            preview.innerHTML = "";
-            fileCount.innerHTML = "";
-            let count = document.createElement('p');
-            count.textContent = `${files.length} ${files.length <= 1 ? 'file' : 'files'} selected `;
-
-            fileCount.appendChild(count);
-            filelist.forEach((file) => {
-                const img = new Image();
-                img.setAttribute('src', URL.createObjectURL(file));
-                img.addEventListener('click', () => {
-                    console.log('clicked');
-                    files = files.filter((file) => file !== files[img.getAttribute('data-file')]);
-                    createPreview(files);
-                });
-                img.dataset.file = filelist.indexOf(file);
-                preview.appendChild(img);
-            });
-        }
-
-        wrapper.addEventListener('dragstart', dragstart);
-        wrapper.addEventListener('dragover', dragover);
-        wrapper.addEventListener('dragend', dragend);
-        wrapper.addEventListener('dragleave', dragleave);
-        wrapper.addEventListener('drop', dropFiles);
-
-        fileUpload.addEventListener('change', (e) => {
-            const files = e.target.files;
-            checkFile(files);
-        });
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const formData = new FormData();
-
-            if (files.length > 0) {
-                files.forEach((file) => {
-                    formData.append('file', file);
-                });
-            } else {
-                alert('You have not uploaded a file');
-            }
-
-            console.log('FILES: ', formData.getAll('file'));
-        });
-
-    })();
 </script>
 </div>

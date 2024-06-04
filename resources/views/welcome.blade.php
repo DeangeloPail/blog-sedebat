@@ -40,7 +40,7 @@
                     </p>
                     <div class="flex items-center  mt-5 justify-between">
                       <div class="flex items-center">
-                          <img class="w-7 h-7 rounded-full shadow-lg" src="{{ config('app.app_url').  '/storage/' .$latestNews->profile_photo_path }}" alt="">
+                          <img class="w-7 h-7 rounded-full shadow-lg" src="{{ config('app.app_url').  '/storage/' .$latestNews->img }}" alt="">
                           <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">{{ $latestNews->name}}</span>
                       </div>
                       <span class="text-xs font-normal text-gray-500 dark:text-gray-400">{{ formatearFecha($latestNews->created_at) }}</span>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="flex items-center justify-between">
                       <div class="flex items-center ">
-                          <img class="w-7 h-7 rounded-full shadow-lg" src="{{ config('app.app_url').  '/storage/' .$news->profile_photo_path }}" alt="">
+                          <img class="w-7 h-7 rounded-full shadow-lg" src="{{ config('app.app_url').  '/storage/' .$news->img }}" alt="">
                           <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">{{ $news->name }}</span>
                       </div>
                       <span class="text-xs font-normal text-gray-500 dark:text-gray-400">{{ formatearFecha($news->created_at) }}</span>
