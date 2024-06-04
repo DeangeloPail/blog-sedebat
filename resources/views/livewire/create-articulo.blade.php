@@ -168,7 +168,7 @@
                         <div class="max-w-2xl mx-auto my-10">
 
 
-                            <div x-show="selected === 1" x-transition:enter="transition ease-out duration-1000"
+                            <div x-show="selected === 1" x-transition:enter="transition ease-out duration-800"
                                 x-transition:enter-start="opacity-0 translate-x-full"
                                 x-transition:enter-end="opacity-100 translate-x-0">
                                 <label for="default-search"
@@ -240,7 +240,7 @@
 
                             </div>
 
-                            <div x-show="selected === 2" x-transition:enter="transition ease-out duration-1000"
+                            <div x-show="selected === 2" x-transition:enter="transition ease-out duration-800"
                                 x-transition:enter-start="opacity-0 translate-x-full"
                                 x-transition:enter-end="opacity-100 translate-x-0">
                                 <div class="relative z-0 w-full mb-6 group">
@@ -335,7 +335,7 @@
 
                             </div>
 
-                            <div x-show="selected === 3" x-transition:enter="transition ease-out duration-1000"
+                            <div x-show="selected === 3" x-transition:enter="transition ease-out duration-800"
                                 x-transition:enter-start="opacity-0 translate-x-full"
                                 x-transition:enter-end="opacity-100 translate-x-0">
                                 <div class="col-span-1 my-auto w-full ">
@@ -368,7 +368,11 @@
                                 </div>
                             </div>
 
-                            <div x-show="selected === 4">
+                            <div x-show="selected > 3"
+                                x-transition:enter="transition ease-out duration-800"
+                                x-transition:enter-start="opacity-0 translate-x-full"
+                                x-transition:enter-end="opacity-100 translate-x-0"
+                                >
                                 <div class="flex items-center">
                                     <svg class="flex-shrink-0 w-4 h-4 me-2 dark:text-gray-300" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">

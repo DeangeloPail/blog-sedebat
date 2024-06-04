@@ -13,7 +13,7 @@
                         {{ formatearFecha($news->created_at) }}</div>
                     <div class="aspect-w-3 aspect-h-2 w-11/12 overflow-hidden">
                         <img class="h-full w-full rounded-lg object-cover object-center"
-                            src={{ asset("storage/images/news/{$news->img}") }} alt="Image post 2" loading="lazy">
+                            src={{ asset("storage/public/images/news/{$news->img}") }} alt="Image post 2" loading="lazy">
                     </div>
                     <div class="prose prose-invert mt-2 text-sm w-11/12 text-start text-gray-600 prose-img:rounded-lg">
                         <p>
@@ -48,7 +48,7 @@
                     class="max-w-sm bg-gray-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <div class="w-full h-52 overflow-hidden">
                         {{-- <a href="{{ route('news.guestShow', $firstNews['id']) }}"> --}}
-                            <img class="rounded-t-lg object-contain" src="{{ asset("storage/images/news/{$firstNews['img']}") }}"
+                            <img class="rounded-t-lg object-contain" src="{{ asset("storage/public/images/news/{$firstNews['img']}") }}"
                                 alt="" />
                         {{-- </a> --}}
                     </div>

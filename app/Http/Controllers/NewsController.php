@@ -22,18 +22,18 @@ class NewsController extends Controller
 
         $usuario = Auth::user()->name;
 
-        if($usuario != 'admin')
+        if($usuario != 'Admin')
         {
             $News =  DB::table('news')
             ->join('writers', 'news.writer_id', '=', 'writers.id')
-            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img', 'writers.email', 'news.created_at')
+            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img as writersImg', 'writers.email', 'news.created_at')
             ->where('writers.name', '=', "$usuario")
             ->orderBy('destacada', 'DESC')
             ->paginate(15);
         }else{
             $News =  DB::table('news')
             ->join('writers', 'news.writer_id', '=', 'writers.id')
-            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img', 'writers.email', 'news.created_at')
+            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img as writersImg', 'writers.email', 'news.created_at')
             ->orderBy('destacada', 'DESC')
             ->paginate(15);
         }
@@ -196,7 +196,7 @@ class NewsController extends Controller
 
         $news = DB::table('news')
             ->join('writers', 'news.writer_id', '=', 'writers.id')
-            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'users.name', 'users.email', 'news.created_at')
+            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.email', 'news.created_at')
             ->where('news.id', '=', $id)
             ->first();
 
@@ -242,7 +242,7 @@ class NewsController extends Controller
 
 
 
-        if (!Storage::exists("images/news/{$news->img}")) {
+        if (!Storage::exists("public/images/news/{$news->img}")) {
             $news['img'] = "default-image.jpg";
         }
 

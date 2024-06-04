@@ -32,27 +32,28 @@
 
             <div class="flex mx-20 mt-10">
                 <!-- Contenido principal -->
-                <div class="w-full lg:w-3/4 px-5">
+                <div class="w-full lg:w-3/4 px-5 mx-auto ">
                     <!-- Aquí es donde irían tus noticias, cada una dentro de un div con la clase 'news-item' -->
-                    <div class="news-item bg-white rounded-lg shadow-lg overflow-hidden mb-6">
+                    <div class="news-item bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden mb-6">
                         {{-- <img src="{{ asset("images/news/{$news['img']}") }}" class=" object-contain w-full h-full"> --}}
                         <div class="img_container relative hover:opacity-50 hover:cursor-pointer ease-in duration-100">
-                            <img src="{{ asset("storage/images/assets/add.png")}}" class="absolute w-40 right-4 bottom-4 " alt=" asdfasd">
+                            <img src="{{ asset('storage/images/assets/add.png') }}"
+                                class="absolute w-40 right-4 bottom-4 " alt=" asdfasd">
                             <img id="img" onclick="Upload()" class=" object-contain w-full "
-                            src="{{ asset("storage/images/news/{$news['img']}") }}">
-                        <canvas id= "can1" class="hidden object-contain w-full" onclick="Upload()">
-                        </canvas>
+                                src="{{ asset("storage/public/images/news/{$news['img']}") }}">
+                            <canvas id= "can1" class="hidden object-contain w-full" onclick="Upload()">
+                            </canvas>
                         </div>
-                        
+
                         <div class="p-6">
                             <label for="first_name"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titulo de la
+                                class="block mb-2 text-sm font-medium text-gray-900  dark:text-white">Titulo de la
                                 noticia</label>
                             <input type="text" name="titulo" id="titulo" value="{{ $news['titulo'] }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-50  border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Titulo" required>
                             {{-- @forelse ($news['contenido'] as $parrafo)
-                                <?php// echo $parrafo; ?> ?> ?> ?> ?> ?> ?> ?> ?> ?> ?> ?>
+                                <?php// echo $parrafo; ?> ?> ?> ?> ?> ?> ?> ?> ?> ?> ?> ?> ?>
                             @empty
                                 <p class="text-gray-700">No hay contenido para mostrar</p>
                             @endforelse --}}
@@ -67,7 +68,7 @@
 
                             <div class="container mx-auto pt-4">
                                 <div class=" rounded-lg py-4 px-2">
-                                    <div class="mb-4 bg-gray-100 rounded-md">
+                                    <div class="mb-4 bg-gray-100 dark:bg-gray-600 rounded-md">
                                         <button id="boldButton"
                                             class=" text-black  p-2 font-bold rounded hover:text-gray-400">Negrita</button>
                                         <button id="italicButton"
@@ -88,73 +89,26 @@
                                 <textarea id="output" name="contenido" class="bg-gray-100 p-0 m-0 hidden rounded w-full" readonly>{{ $news['contenido'] }}</textarea>
                             </div>
 
-
+                            <div class="flex gap-4">
+                                <button type="submit"
+                                    class="px-6 py-3.5 text-base font-medium text-white bg-yellow-300 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Editar</button>
+                                <button type="button"ype="submit" data-modal-target="popup-modal"
+                                    data-modal-toggle="popup-modal"
+                                    class="px-6 py-3.5 text-base font-medium text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Eliminar</button>
+                            </div>
 
                         </div>
                     </div>
+
+
 
                     <!-- Repite el div 'news-item' para cada noticia -->
                 </div>
 
-                <!-- Barra lateral -->
-                <aside class="w-full lg:w-1/4 px-5 fixed max-lg:hidden top-26 right-0">
-                    <!-- Noticias relacionadas -->
-                    <div class="related-news mb-6">
-                        <h3 class="text-xl font-bold mb-3">Noticias relacionadas</h3>
-
-                        <!-- Aquí es donde irían tus noticias relacionadas, cada una dentro de un div con la clase 'related-news-item' -->
-                        <div class="related-news-item mb-3">
-                            <h4 class="font-bold">Título de la noticia relacionada</h4>
-                            <p>Aquí va una breve descripción de la noticia relacionada...</p>
-                        </div>
-
-                        <!-- Repite</form> el div 'related-news-item' para cada noticia relacionada -->
-                    </div>
-
-                    <!-- Publicidad -->
-                    <div class="advertising bg-white rounded-lg shadow-lg p-6">
-                        <!-- Aquí es donde iría tu publicidad -->
-                        Publicidad
-                    </div>
-                    <div class="mt-40 ml-10 flex gap-4">
-                        <button type="submit"
-                            class="px-6 py-3.5 text-base font-medium text-white bg-yellow-300 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Editar</button>
-                        <button type="button"ype="submit"
-                            data-modal-target="popup-modal" data-modal-toggle="popup-modal"
-                            class="px-6 py-3.5 text-base font-medium text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Eliminar</button>
-                    </div>
-
-                </aside>
-
 
             </div>
 
-            <div class="flex mx-5 my-10 ">
-                <!-- Barra lateral mobile-->
-                <aside class="w-full lg:w-1/4 px-5 lg:hidden top-26">
-                    <!-- Noticias relacionadas -->
-                    <div class="related-news mb-6 ml-4">
-                        <h3 class="text-xl font-bold mb-3">Noticias relacionadas</h3>
 
-                        <!-- Aquí es donde irían tus noticias relacionadas, cada una dentro de un div con la clase 'related-news-item' -->
-                        <div class="related-news-item mb-3">
-                            <h4 class="font-bold">Título de la noticia relacionada</h4>
-                            <p>Aquí va una breve descripción de la noticia relacionada...</p>
-                        </div>
-
-                        <!-- Repite el div 'related-news-item' para cada noticia relacionada -->
-                    </div>
-
-                    <!-- Publicidad -->
-                    <div class="advertising bg-white rounded-lg shadow-lg p-6">
-                        <!-- Aquí es donde iría tu publicidad -->
-                        Publicidad
-                    </div>
-                </aside>
-            </div>
-
-            <div class="fixed bottom-20 right-20 mr-4 h-20 max-lg:hidden flex gap-4">
-            </div>
         </form>
         <div id="popup-modal" tabindex="-1"
             class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -200,7 +154,7 @@
             </div>
         </div>
     </body>
-    
+
     <script>
         const boldButton = document.getElementById("boldButton");
         const italicButton = document.getElementById("italicButton");

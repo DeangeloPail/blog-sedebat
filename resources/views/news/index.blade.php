@@ -28,7 +28,7 @@
                         data-modal-toggle="popup-modal"
                         class="mt-4 text-3xl absolute z-40 right-6 text-red-500 hover:text-4xl hover:text-red-400 ease-in duration-75 font-bold"><i
                             class="bi bi-x-square-fill"></i></button>
-                    @if (Auth::user()->name == 'admin')
+                    @if (Auth::user()->name == 'Admin')
                         <div class="star-contain z-40">
                             <a href="{{ route('news.stared', $New->id) }} ">
                                 <div
@@ -50,7 +50,7 @@
 
                     <a href="{{ Route('news.show', $New->id) }}">
                         <img class="h-full w-full ease-in duration-75 hover:opacity-30 hover:cursor-pointer"
-                            src="{{ asset("storage/images/news/{$New->img}") }}"
+                            src="{{ asset("storage/public/images/news/{$New->img}") }}"
                             alt="Strumble head lighthouse overlooking the sea" />
                     </a>
 
@@ -83,7 +83,7 @@
                     <div class="absolute right-40 top-44 opacity-50 ">
 
                         <img class="h-20 w-20 z-20 hover:cursor-pointer"
-                            src="{{ asset('storage/images/assets/add.png') }}"
+                            src="{{ asset('storage/assets/add.png') }}"
                             alt="Strumble head lighthouse overlooking the sea" />
 
 
@@ -143,6 +143,7 @@
             </div>
         </div>
     @endif
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         function insIdToModal(id) {

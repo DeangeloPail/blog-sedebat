@@ -24,15 +24,16 @@
         </div>
 
         {{-- articulos --}}
-
+            <div class="flex flex-col ">
+            
             @foreach ($news as $new)
                 <a href="{{ route('news.guestShow', $new->id) }}"
-                    class=" h-64 transition ease-in-out delay-150 hover:-translate-y-5 hover:scale-100 duration-300 flex flex-col mt-16 w-full items-center bg-white border border-gray-200 rounded-lg shadow lg:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                    <div>
+                    class="transition realative mx-auto ease-in-out delay-150 hover:-translate-y-5 hover:scale-100 duration-300 flex flex-col mt-16 w-4/5 items-center bg-white border border-gray-200 rounded-lg shadow lg:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                    <div class="overflow-hidden w-1/3 h-full">
                     
-                    <img class="object-cover w-full h-52 rounded-t-lg md:rounded-none md:rounded-s-lg"
-                        src="{{ asset("storage/images/news/{$new->img}") }}" alt="">
-                    
+                        <img class="object-fit rounded-l-lg"
+                            src="{{ asset("storage/public/images/news/{$new->img}") }}" alt="">
+                        
                     </div>
                     <div class="flex flex-col justify-between p-4 leading-normal">
                         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -43,7 +44,7 @@
                         <div class="flex items-center  mt-5 justify-between">
                             <div class="flex items-center">
                                 <img class="w-7 h-7 rounded-full shadow-lg"
-                                    src="{{ config('app.app_url') . '/storage/' . $new->profile_photo_path }}"
+                                    src="{{ config('app.app_url') . '/storage/' . $new->writerImg }}"
                                     alt="">
                                 <span
                                     class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">{{ $new->name }}</span>
@@ -53,6 +54,8 @@
                     </div>
                 </a>
             @endforeach
+            
+            </div>
             
         <div class='pt-8'>
             {{ $news->links('vendor.livewire.tailwind') }}

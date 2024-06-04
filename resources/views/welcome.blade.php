@@ -31,7 +31,7 @@
               @if (isset($latestNews))
                 <a href="{{ route('news.guestShow', $latestNews->id) }}" class=" transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 duration-300 flex flex-col mt-16 w-full mx-5 items-center bg-white border border-gray-200 rounded-lg shadow lg:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                   <div class='overflow-hidden max-w-[30vw]'>
-                    <img class="object-cover w-full h-full  rounded-t-lg md:h-auto md:rounded-none md:rounded-s-lg" src="{{ asset("storage/images/news/{$latestNews->img}") }}" alt="">
+                    <img class="object-cover w-full h-full  rounded-t-lg md:h-auto md:rounded-none md:rounded-s-lg" src="{{ asset("storage/public/images/news/{$latestNews->img}") }}" alt="">
                   </div>
                   <div class="flex flex-col justify-between p-4 leading-normal">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $latestNews->titulo}}</h5>
@@ -40,10 +40,10 @@
                     </p>
                     <div class="flex items-center  mt-5 justify-between">
                       <div class="flex items-center">
-                          <img class="w-7 h-7 rounded-full shadow-lg" src="{{ config('app.app_url').  '/storage/' .$latestNews->img }}" alt="">
-                          <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">{{ $latestNews->name}}</span>
+                          <img class="w-7 h-7 rounded-full shadow-lg" src="{{ config('app.app_url').  '/storage/' .$latestNews->writerImg }}" alt="">
+                          <span class="ml-2 text-sm mr-3 font-normal text-gray-500 dark:text-gray-400">{{ $latestNews->name}}</span>
                       </div>
-                      <span class="text-xs font-normal text-gray-500 dark:text-gray-400">{{ formatearFecha($latestNews->created_at) }}</span>
+                      <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ formatearFecha($latestNews->created_at) }}</span>
                     </div>
                   </div>
                 </a>
@@ -64,21 +64,21 @@
 
                 
                 @forelse ($latestWeekNews as $news)  
-                  <a href="{{ route('news.guestShow', $news->id) }}" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 grid  gap-4 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 
+                  <a href="{{ route('news.guestShow', $news->id) }}" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300  hover:dark:bg-gray-700 hover:dark:border-gray-600 hover:bg-gray-200 hover:border-gray-100 grid  gap-4 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 
                     dark:border-gray-500">
-                    <div class="h-56 overflow-hidden">
-                      <img class="rounded-t-lg" src="{{ asset("storage/images/news/{$news->img}") }}" alt="" />
+                    <div class="w-full h-full overflow-hidden">
+                      <img class="rounded-t-lg" src="{{ asset("storage/public/images/news/{$news->img}") }}" alt="" />
                     </div>
                     <div class="p-5">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ summary($news->titulo, 80) }}</h5>
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ summary($news->contenido, 200) }}</p>
                     </div>
-                    <div class="flex items-center justify-between">
+                    <div class="flex p-6 items-center justify-between">
                       <div class="flex items-center ">
-                          <img class="w-7 h-7 rounded-full shadow-lg" src="{{ config('app.app_url').  '/storage/' .$news->img }}" alt="">
+                          <img class="w-7 h-7 object-cover rounded-full shadow-lg" src="{{ config('app.app_url').  '/storage/' .$news->writerImg }}" alt="">
                           <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">{{ $news->name }}</span>
                       </div>
-                      <span class="text-xs font-normal text-gray-500 dark:text-gray-400">{{ formatearFecha($news->created_at) }}</span>
+                      <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ formatearFecha($news->created_at) }}</span>
                     </div>
                   </a>
                 @empty

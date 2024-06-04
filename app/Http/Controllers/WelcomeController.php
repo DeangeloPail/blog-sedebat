@@ -10,21 +10,16 @@ class WelcomeController extends Controller
     public function index()
     {
 
-        $news = DB::table('news')
-        ->join('writers', 'news.writer_id', '=', 'writers.id')
-        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img', 'writers.email', 'news.created_at')
-        ->where('news.destacada', '=', true)
-        ->get();
 
         $latestNews = DB::table('news')
         ->join('writers', 'news.writer_id', '=', 'writers.id')
-        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img', 'writers.email', 'news.created_at')
+        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img as writerImg', 'writers.email', 'news.created_at')
         ->latest('news.created_at')
         ->first();
 
         $latestWeekNews = DB::table('news')
         ->join('writers', 'news.writer_id', '=', 'writers.id')
-        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img', 'writers.email', 'news.created_at')
+        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img as writerImg', 'writers.email', 'news.created_at')
         ->orderBy('news.created_at', 'desc')
         ->skip(1)
         ->take(9)
@@ -34,7 +29,7 @@ class WelcomeController extends Controller
 
         // $news = $news->toArray();
 
-        return view('welcome', compact('news', 'latestNews', 'latestWeekNews'));
+        return view('welcome', compact('latestNews', 'latestWeekNews'));
     }
     public function tramites()
     {

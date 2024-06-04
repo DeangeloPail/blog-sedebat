@@ -45,7 +45,7 @@
                     
                      <a href="{{ Route('news.guestShow', $New->id) }}">
                         <img class="h-full w-full ease-in duration-75 hover:opacity-30 hover:cursor-pointer"
-                            src="{{ asset("storage/images/news/{$New['img']}") }}"
+                            src="{{ asset("storage/public/images/news/{$New['img']}") }}"
                             alt="Strumble head lighthouse overlooking the sea" />
                     </a>
 
