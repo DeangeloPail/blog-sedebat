@@ -1,3 +1,5 @@
 <x-guest-layout>
-    @livewire('autor-profile')
+    
+    <livewire:AutorProfile :id="$id">
+
 </x-guest-layout>

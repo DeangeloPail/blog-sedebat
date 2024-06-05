@@ -33,16 +33,4 @@ class Articulos extends Component
         
     }
 
-
-
-//     public function updatedSearchingNews(){
-
-//         $newsFound = DB::table('news')
-//         ->join('writers', 'news.writer_id', '=', 'writers.id')
-//         ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'news.resumen', 'writers.name', 'writers.profile_photo_path', 'writers.email', 'news.created_at')
-//         ->where('news.titulo', '=', "$this->searchingNews")
-//         ->paginate(5);
-
-//         // $this->news = $newsFound;
-// }
 }

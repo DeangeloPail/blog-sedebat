@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\WelcomeController;
-
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
@@ -14,9 +13,9 @@ Route::get('/blog', function () {
     return view('blog');
 });
 
-Route::get('/autorProfile', function () {
-    return view('autorProfile');
-});
+Route::get('/autorProfile/{id}', function ($id) {
+    return view('autorProfile', compact('id'));
+})->name('autorProfile');
 
 Route::get('/writers', function () {
     return view('writers.index');
