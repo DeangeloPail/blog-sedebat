@@ -12,25 +12,98 @@ class WriterEditForm extends Form
 {
     public $writerId = '';
 
-    #[Rule('required|min:3')]
+    #[Validate]
     public $name;
-    #[Rule('required|min:3')]
+    #[Validate]
     public $last_name;
-    #[Rule('required|min:3')]
+    #[Validate]
     public $email;
-    #[Rule('required|min:3')]
+    #[Validate]
     public $location;
-    #[Rule('min:5')]
+    #[Validate]
     public $profession;
-    #[Rule('min:3')]
+    #[Validate]
     public $studies;
     
     public $oldImage;
     public $image;
+    public $currentEmail;
 
     public $arrayTags = [];
     #[Rule('min:5')]
     public $description;
+
+    public function rules()
+    {
+        return [
+
+            'name' => 'required|alpha|min:3|max:25',
+
+            'last_name' => 'required|alpha|min:3|max:25',
+
+            'location' => 'required',
+
+            'profession' => 'required',
+
+            'studies' => 'required',
+
+            'email' => [
+                'required',
+                'regex:/^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/',
+                'string',
+                'lowercase',
+                'max:255',
+                function ($attribute, $value, $fail) {
+
+                    if(($this->currentEmail != $value))
+                    {
+    
+                        $existingContribuyente = Writer::where('email', $value)->first();
+    
+                        if ($existingContribuyente) {
+                            $fail('El correo electrónico ya se encuentra registrado.');
+                        }
+                    }
+                
+                    
+                
+                }
+            ],
+            
+
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            'name' => [
+                'required' => 'El nombre es requerido',
+                'alpha' => 'El nombre solo puede contener letras',
+                'min' => 'El nombre debe tener al menos :min caracteres',
+                'max' => 'El nombre no puede tener más de :max caracteres',
+            ],
+            'last_name' => [
+                'required' => 'El apellido es requerido',
+                'alpha' => 'El apellido solo puede contener letras',
+                'min' => 'El apellido debe tener al menos :min caracteres',
+                'max' => 'El apellido no puede tener más de :max caracteres',
+            ],
+            'location' => [
+                'required' => 'La ubicación es requerida',
+                'alpha' => 'La ubicación solo puede contener letras',
+            ],
+            'profession' => [
+                'required' => 'La profesión es requerida',
+                'alpha' => 'La profesión solo puede contener letras',
+            ],
+            'studies' => [
+                'required' => 'Los estudios son requeridos',
+                'alpha' => 'Los estudios solo pueden contener letras',
+            ],
+           
+        ];
+    }
 
     public function edit($writerId)
     {
@@ -42,6 +115,7 @@ class WriterEditForm extends Form
         $this->name = $writer->name;
         $this->last_name = $writer->last_name;
         $this->email = $writer->email;  
+        $this->currentEmail = $writer->email;
         $this->location = $writer->location;
         $this->profession = $writer->profession;
         $this->studies = $writer->studies;

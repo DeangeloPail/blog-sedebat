@@ -26,7 +26,7 @@
                 <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
                     <div>
 
-                        <p class="mt-3 text-gray-600 text-justify"><?= $news->contenido ?></p>
+                        <p class="mt-3 text-black dark:text-gray-100 text-justify"><?= $news->contenido ?></p>
                     </div>
 
                 </div>
@@ -47,10 +47,10 @@
                 <div
                     class="max-w-sm bg-gray-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <div class="w-full h-52 overflow-hidden">
-                        {{-- <a href="{{ route('news.guestShow', $firstNews['id']) }}"> --}}
+                        <a href="{{ route('news.guestShow', $firstNews['id']) }}">
                             <img class="rounded-t-lg object-contain" src="{{ asset("storage/public/images/news/{$firstNews['img']}") }}"
                                 alt="" />
-                        {{-- </a> --}}
+                        </a>
                     </div>
                     <div class="px-5 py-2">
                         <a href="{{ route('news.guestShow', $firstNews['id']) }}">
@@ -77,7 +77,7 @@
                         class="max-w-sm bg-gray-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <div class="w-full h-52 overflow-hidden">
                             <a href="{{ route('news.guestShow', $secondNews['id']) }}">
-                                <img class="rounded-t-lg object-contain" src="{{ asset("storage/images/news/{$secondNews['img']}") }}"
+                                <img class="rounded-t-lg object-contain" src="{{ asset("storage/public/images/news/{$secondNews['img']}") }}"
                                     alt="" />
                             </a>
                         </div>

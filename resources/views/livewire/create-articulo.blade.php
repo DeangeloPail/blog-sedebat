@@ -109,13 +109,40 @@
                         selectedWriter: '',
                         selected: 1,
                         total: 4,
+                        canAdvance: false,
+                        errorMessage: '',
                         previous() {
-                            if (this.selected > 1)
+                            if (this.selected > 1) {
                                 this.selected--;
+                                this.updateCanAdvance();
+                            }
                         },
                         next() {
-                            if (this.selected < this.total)
-                                this.selected++;
+                            this.updateCanAdvance();
+                            if (this.canAdvance) {
+                                if (this.selected < this.total) {
+                                    this.selected++;
+                                    this.errorMessage = '';
+                                }
+                            }
+                        },
+                        updateCanAdvance() {
+                            if (this.selected === 1) {
+                                this.canAdvance = this.selectedWriter !== '';
+                                this.errorMessage = this.selectedWriter === '' ? 'Por favor, selecciona un escritor' : '';
+                            } else if (this.selected === 2) {
+                                const titulo = document.getElementById('titulo').value.trim();
+                                const photo = document.getElementById('photo').files.length > 0;
+                                this.canAdvance = titulo !== '' && photo;
+                                this.errorMessage = titulo === '' ? 'Por favor, ingresa un título' : (photo ? '' : 'Por favor, selecciona una imagen');
+                            } else if (this.selected === 3) {
+                                const contenido = document.getElementById('output').value.trim();
+                                this.canAdvance = contenido !== '';
+                                this.errorMessage = contenido === '' ? 'Por favor, ingresa el contenido' : '';
+                            } else {
+                                this.canAdvance = true;
+                                this.errorMessage = '';
+                            }
                         }
                     }">
 
@@ -130,7 +157,7 @@
                                     <i x-text="selected <= 1 ? '1' : '' "
                                         :class="selected > 1 ? 'bi bi-check text-lg' : ''"></i>
                                 </span>
-                                Personal <span class="hidden sm:inline-flex sm:ms-2">Info</span>
+                                Paso 1
                                 <svg class="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -146,7 +173,7 @@
                                     <i x-text="selected <= 2 ? '2' : '' "
                                         :class="selected > 2 ? 'bi bi-check text-lg' : ''"></i>
                                 </span>
-                                Account <span class="hidden sm:inline-flex sm:ms-2">Info</span>
+                                Paso 2
                                 <svg class="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 10">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -162,7 +189,7 @@
                                     <i x-text="selected <= 3 ? '3' : '' "
                                         :class="selected > 3 ? 'bi bi-check text-lg' : ''"></i>
                                 </span>
-                                Review
+                                Paso 3
                             </li>
                         </ol>
                         <div class="max-w-2xl mx-auto my-10">
@@ -181,7 +208,7 @@
                                                 stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                         </svg>
                                     </div>
-                                    <input type="search" wire:model.live='searchWriters'
+                                    <input type="search"  wire:model.live='searchWriters'
                                         class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Elije al escritor" />
                                 </div>
@@ -193,10 +220,13 @@
 
 
                                     @forelse($writers as $writer)
-                                        <div @click="selectedWriter = {{ $writer->id }}"
-                                            :class="selectedWriter == {{ $writer->id }} ?
+                                        <div @click="selectedWriter = {{ $writer->id }} "
+                                            x-on:click="errorMessage = ''"
+                                            :class="[selectedWriter == {{ $writer->id }} ?
                                                 'dark:border-blue-800 bg-blue-200 border-blue-200 scale-110 dark:bg-blue-800' :
-                                                ''"
+                                                '', errorMessage ?
+                                                'dark:border-red-600 border-red-600 bg-red-200 dark:bg-transparent' : ''
+                                            ]"
                                             class="flex hover: justify-between items-centern w-52 gap-4 border cursor-pointer hover:scale-110 ease-in duration-200 py-2 px-3 rounded-lg">
 
                                             <div>
@@ -219,7 +249,7 @@
                                     @endforelse
                                     <a href={{ route('writers') }}>
                                         <div
-                                            class="flex hover:scale-110 ease-in duration-200 justify-center items-centern w-52 gap-4 border py-2 px-3 rounded-lg">
+                                            class="flex hover:scale-110 ease-in duration-200 justify-center items-centern w-52 gap-4 border bg-green-300 dark:bg-green-800 py-2 px-3 rounded-lg">
 
                                             <div class="text-4xl">
                                                 <i class="bi bi-plus"></i>
@@ -236,8 +266,11 @@
                                     </a>
 
                                 </div>
+                                <div class='pt-8'>
+                                    {{ $writers->links('vendor.livewire.tailwind') }}
+                                </div>
 
-
+                                <p x-text="errorMessage" class="text-red-500 mt-2"></p>
                             </div>
 
                             <div x-show="selected === 2" x-transition:enter="transition ease-out duration-800"
@@ -245,10 +278,17 @@
                                 x-transition:enter-end="opacity-100 translate-x-0">
                                 <div class="relative z-0 w-full mb-6 group">
                                     <input type="text" id="titulo"
-                                        name="titulo"class=" font-bold	 block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                        x-on:input="errorMessage = errorMessage.replace('Por favor, ingresa un título', '')"
+                                        x-bind:class="[errorMessage == 'Por favor, ingresa un título' ? 'border-red-500' :
+                                            'border-gray-300 dark:border-gray-600  '
+                                        ]"
+                                        name="titulo"class=" font-bold block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 appearance-none dark:text-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                         placeholder=" " requigreen>
                                     <label for="titulo"
-                                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Título</label>
+                                        x-bind:class="[errorMessage == 'Por favor, ingresa un título' ? 'text-red-500' :
+                                            'text-gray-500 dark:text-gray-400'
+                                        ]"
+                                        class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Título</label>
                                 </div>
 
                                 <div x-data="{ photoName: null, photoPreview: null }" class="flex flex-col"
@@ -259,7 +299,8 @@
 
                                         <div class="col-span-6 sm:col-span-4 w-full">
                                             <!-- Profile Photo File Input -->
-                                            <input type="file" id="photo" class="hidden" name="img" accept="image/png, image/jpeg"
+                                            <input type="file" id="photo" class="hidden" name="img"
+                                                accept="image/png, image/jpeg"
                                                 x-on:writer-created='photoName = null, photoPreview = null, $refs.photo.value = null;'
                                                 x-ref="photo"
                                                 x-on:change="
@@ -281,7 +322,10 @@
                                                 <div class="mt-2 relative cursor-pointer p-4"
                                                     x-on:writer-created="!photoPreview" x-show="! photoPreview">
 
-                                                    <div class="flex items-center justify-center w-full">
+                                                    <div x-bind:class="[errorMessage == 'Por favor, selecciona una imagen' ?
+                                                        'border-red-600 border-2' : ''
+                                                    ]"
+                                                        class="flex items-center justify-center border-solid  rounded-lg  w-full">
                                                         <label for="dropzone-file"
                                                             class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                                             <div
@@ -296,8 +340,9 @@
                                                                 </svg>
                                                                 <p
                                                                     class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                                                                    <span class="font-semibold">Click to upload</span>
-                                                                    or drag and drop
+                                                                    <span class="font-semibold">Click para subir una
+                                                                        imagen</span>
+
                                                                 </p>
                                                                 <p class="text-xs text-gray-500 dark:text-gray-400">
                                                                     SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
@@ -326,7 +371,7 @@
 
 
 
-                                            <x-input-error for="photo" class="mt-2" />
+                                            <p x-text="errorMessage" class="text-red-500 mt-2"></p>
                                         </div>
 
                                     </div>
@@ -353,27 +398,26 @@
                                                         class="text-black p-2 underline rounded dark:text-white ease-in duration-100 dark:hover:text-gray-400 hover:text-gray-400">Underline</button>
                                                 </div>
                                                 <div contenteditable="true" id="editor"
-                                                    class="bg-gray-200 overflow-auto p-2 text-black dark:border-gray-500 border-2 rounded h-48 w-full">
+                                                    x-bind:class="[errorMessage ? 'border-red-600 border-2 borderl-solid' : '']"
+                                                    class="bg-gray-200  overflow-auto p-2 text-black border-2 rounded h-48 w-full">
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="container mx-auto">
+                                        <div class="container mx-auto ">
                                             <textarea id="output" name="contenido" class=" p-0 m-0 rounded w-full" readonly></textarea>
                                         </div>
 
                                         <label for="contenido"
-                                            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Contenido</label>
+                                            class="peer-focus:font-medium  absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Contenido</label>
                                     </div>
-
+                                    <p x-text="errorMessage" class="text-red-500 mt-2"></p>
                                 </div>
                             </div>
 
-                            <div x-show="selected > 3"
-                                x-transition:enter="transition ease-out duration-800"
+                            <div x-show="selected > 3" x-transition:enter="transition ease-out duration-800"
                                 x-transition:enter-start="opacity-0 translate-x-full"
-                                x-transition:enter-end="opacity-100 translate-x-0"
-                                >
+                                x-transition:enter-end="opacity-100 translate-x-0">
                                 <div class="flex items-center">
                                     <svg class="flex-shrink-0 w-4 h-4 me-2 dark:text-gray-300" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -386,12 +430,13 @@
                                     </h3>
                                 </div>
                                 <div class="mt-2 mb-4 text-sm text-gray-800 dark:text-gray-300">
-                                    Estas apunto de subir este articulo asegurate que esta todo correcto, posteriormente podras editar el articulo en el modulo de edicion.
+                                    Estas apunto de subir este articulo asegurate que esta todo correcto, posteriormente
+                                    podras editar el articulo en el modulo de edicion.
                                 </div>
                                 <div class="flex">
                                     <button type="submit"
                                         class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-gray-600 dark:hover:bg-gray-500 dark:focus:ring-gray-800">
-                                        <i class="bi mr-2 text-lg bi-check2-circle"></i> 
+                                        <i class="bi mr-2 text-lg bi-check2-circle"></i>
                                         Si, estoy seguro!
                                     </button>
                                     <button type="button" @click="selected = 1"
@@ -405,11 +450,15 @@
                         </div>
 
                         <div class="text-center my-2 flex w-full justify-center gap-40">
-                            <button type="button" @click="previous" class="rounded text-5xl duration-200 hover:text-blue-600 p-2"
-                                :class="selected === 1 ? 'hidden' : ''"><i class="bi bi-arrow-left-short"></i></button>
-                                
-                            <button type="button" @click="next" class="rounded text-5xl ease-in duration-200 hover:text-blue-600 p-2"
-                                :class="selected === total ? 'hidden' : ' '"><i class="bi bi-arrow-right-short"></i></button>
+                            <button type="button" @click="previous"
+                                class="rounded text-5xl duration-200 hover:text-blue-600 p-2"
+                                :class="selected === 1 ? 'hidden' : ''"><i
+                                    class="bi bi-arrow-left-short"></i></button>
+
+                            <button type="button" @click="next"
+                                class="rounded text-5xl ease-in duration-200 hover:text-blue-600 p-2"
+                                :class="selected === total ? 'hidden' : ' '"><i
+                                    class="bi bi-arrow-right-short"></i></button>
                         </div>
 
                 </form>

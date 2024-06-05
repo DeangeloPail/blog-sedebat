@@ -24,22 +24,22 @@
         </div>
 
         {{-- articulos --}}
-            <div class="flex flex-col ">
+            <div class="flex flex-col max-lg:w-full">
             
             @foreach ($news as $new)
                 <a href="{{ route('news.guestShow', $new->id) }}"
-                    class="transition realative mx-auto ease-in-out delay-150 hover:-translate-y-5 hover:scale-100 duration-300 flex flex-col mt-16 w-4/5 items-center bg-white border border-gray-200 rounded-lg shadow lg:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                    <div class="overflow-hidden w-1/3 h-full">
+                    class="transition realative max-lg:flex-col max-lg:h-full max-lg:w-full mx-auto ease-in-out h-64 delay-150 hover:-translate-y-5 hover:scale-100 duration-300 flex flex-col mt-16 w-4/5 items-center bg-white border border-gray-200 rounded-lg shadow lg:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                    <div class="overflow-hidden max-lg:w-full rounded-lg w-2/5 h-full">
                     
-                        <img class="object-fit rounded-l-lg"
+                        <img class="object-cover w-[40vw] h-[40vh] max-lg:h-64 max-lg:w-full rounded-l-lg"
                             src="{{ asset("storage/public/images/news/{$new->img}") }}" alt="">
                         
                     </div>
-                    <div class="flex flex-col justify-between p-4 leading-normal">
+                    <div class="flex flex-col w-3/5 h-full max-lg:w-full justify-between p-4 overflow-hidden leading-normal">
                         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                             {{ $new->titulo }}</h5>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            {{ summary($new->contenido, 500) }}
+                        <p class="mb-3  text-gray-700 overflow-hidden dark:text-gray-400">
+                            {{ summary($new->contenido, 280) }}
                         </p>
                         <div class="flex items-center  mt-5 justify-between">
                             <div class="flex items-center">

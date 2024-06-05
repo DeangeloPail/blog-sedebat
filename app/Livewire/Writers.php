@@ -37,6 +37,7 @@ class Writers extends Component
         $this->resetPage(pageName: 'pageWriter');
 
         $this->writerCreated->image = '';
+        $this->dispatch('close-modaledit');
         $this->dispatch('writer-created', 'Se almaceno el registro');
     }
 
