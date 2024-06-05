@@ -62,7 +62,6 @@ class NewsController extends Controller
         $news = new News();
         $news->titulo = $request->titulo;
         $news->contenido = $request->contenido;
-        $news->descripcion_img = $request->descripcion_img;
         $news->writer_id = $request->writer_id;
 
 

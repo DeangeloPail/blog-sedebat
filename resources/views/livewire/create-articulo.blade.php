@@ -259,7 +259,7 @@
 
                                         <div class="col-span-6 sm:col-span-4 w-full">
                                             <!-- Profile Photo File Input -->
-                                            <input type="file" id="photo" class="hidden" name="img"
+                                            <input type="file" id="photo" class="hidden" name="img" accept="image/png, image/jpeg"
                                                 x-on:writer-created='photoName = null, photoPreview = null, $refs.photo.value = null;'
                                                 x-ref="photo"
                                                 x-on:change="
@@ -269,7 +269,8 @@
                                                 photoPreview = e.target.result;
                                             };
                                             reader.readAsDataURL($refs.photo.files[0]);
-                                " />
+                                            console.log($refs.photo.files[0])
+                                            " />
 
 
                                             <x-label for="photo" value="{{ __('Imagen de la portada') }}" />
