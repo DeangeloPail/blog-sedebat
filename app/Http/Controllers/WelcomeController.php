@@ -13,13 +13,13 @@ class WelcomeController extends Controller
 
         $latestNews = DB::table('news')
         ->join('writers', 'news.writer_id', '=', 'writers.id')
-        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img as writerImg', 'writers.email', 'news.created_at')
+        ->select('news.id', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img as writerImg', 'writers.email', 'news.created_at')
         ->latest('news.created_at')
         ->first();
 
         $latestWeekNews = DB::table('news')
         ->join('writers', 'news.writer_id', '=', 'writers.id')
-        ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img as writerImg', 'writers.email', 'news.created_at')
+        ->select('news.id', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img as writerImg', 'writers.email', 'news.created_at')
         ->orderBy('news.created_at', 'desc')
         ->skip(1)
         ->take(9)

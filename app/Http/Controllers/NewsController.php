@@ -26,14 +26,14 @@ class NewsController extends Controller
         {
             $News =  DB::table('news')
             ->join('writers', 'news.writer_id', '=', 'writers.id')
-            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img as writersImg', 'writers.email', 'news.created_at')
+            ->select('news.id', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img as writersImg', 'writers.email', 'news.created_at')
             ->where('writers.name', '=', "$usuario")
             ->orderBy('destacada', 'DESC')
             ->paginate(15);
         }else{
             $News =  DB::table('news')
             ->join('writers', 'news.writer_id', '=', 'writers.id')
-            ->select('news.id', 'news.descripcion_img', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img as writersImg', 'writers.email', 'news.created_at')
+            ->select('news.id', 'news.titulo', 'news.img', 'news.contenido', 'news.destacada', 'writers.name', 'writers.img as writersImg', 'writers.email', 'news.created_at')
             ->orderBy('destacada', 'DESC')
             ->paginate(15);
         }
