@@ -2,7 +2,9 @@
 /node_modules
 /public/build
 /public/hot
-/public/storage
+/public/storage/public/images
+/public/storage/livewire-tmp
+/public/storage/writers
 /storage/*.key
 /vendor
 .env
