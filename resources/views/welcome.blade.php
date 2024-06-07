@@ -4,7 +4,7 @@
           <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-black"></span>
         </div>
         <div class=" mt-28 container mx-auto items-center " style="transform: translateZ(0px)">
-          <h1 class="text-5xl text-center font-extrabold dark:text-white">EL GOCHO DICE</h1>
+          <h1 class="text-5xl font-carter-one text-center font-extrabold dark:text-white">EL GOCHO DICE</h1>
           <p class="text-lg text-center mt-10 font-semibold dark:text-white">"El Gocho Dice" es un vibrante blog que sirve como plataforma para la promoción y exposición de autores y escritores originarios del estado Táchira, Venezuela. En este espacio digital, exploramos la riqueza literaria y cultural de la región, destacando las voces locales y sus contribuciones al mundo de la literatura. Desde la poesía hasta la prosa, desde los relatos cortos hasta las novelas, "El Gocho Dice" celebra la diversidad de estilos y géneros que caracterizan el panorama literario tachirense. Únete a nosotros mientras descubrimos y compartimos las historias y perspectivas únicas que emergen de esta tierra de talento literario inigualable.</p>
           {{-- seccion autores--}}
           <div class=" mt-28 mb-28 container mx-auto items-center">

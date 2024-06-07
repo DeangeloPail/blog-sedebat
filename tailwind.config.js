@@ -30,9 +30,20 @@ module.exports = {
     ],
     darkMode:'class',
     theme: {
-      extend: {},
+      extend: {
+        fontFamily: {
+            'bangers': ['Bangers', ...defaultTheme.fontFamily.sans],
+            'bungee-shade': ['Bungee Shade', ...defaultTheme.fontFamily.sans],
+            'carter-one': ['Carter One', ...defaultTheme.fontFamily.sans],
+          }
+      },
     },
     plugins: [
-        require('flowbite/plugin')
+        require('flowbite/plugin'),
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography'),
+        require('@tailwindcss/aspect-ratio'),
+        require('@tailwindcss/line-clamp'),
+        
     ],
   };

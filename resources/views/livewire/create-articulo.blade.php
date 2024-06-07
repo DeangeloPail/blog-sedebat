@@ -223,11 +223,11 @@
                                         <div @click="selectedWriter = {{ $writer->id }} "
                                             x-on:click="errorMessage = ''"
                                             :class="[selectedWriter == {{ $writer->id }} ?
-                                                'dark:border-blue-800 bg-blue-200 border-blue-200 scale-110 dark:bg-blue-800' :
-                                                '', errorMessage ?
+                                                'dark:border-blue-800 bg-blue-300 border-blue-200 scale-110 dark:bg-blue-700' :
+                                                'bg-gray-200 dark:bg-gray-700', errorMessage ?
                                                 'dark:border-red-600 border-red-600 bg-red-200 dark:bg-transparent' : ''
                                             ]"
-                                            class="flex hover: justify-between items-centern w-52 gap-4 border cursor-pointer hover:scale-110 ease-in duration-200 py-2 px-3 rounded-lg">
+                                            class="flex justify-between items-centern w-52 gap-4  cursor-pointer hover:scale-110 ease-in duration-200 py-2 px-3 rounded-lg">
 
                                             <div>
                                                 <img src="{{ asset("storage/{$writer->img}") }}" alt=""
@@ -249,7 +249,7 @@
                                     @endforelse
                                     <a href={{ route('writers') }}>
                                         <div
-                                            class="flex hover:scale-110 ease-in duration-200 justify-center items-centern w-52 gap-4 border bg-green-300 dark:bg-green-800 py-2 px-3 rounded-lg">
+                                            class="flex hover:scale-110 ease-in duration-200 justify-center items-centern w-52 gap-4 bg-green-300 dark:bg-green-600 py-2 px-3 rounded-lg">
 
                                             <div class="text-4xl">
                                                 <i class="bi bi-plus"></i>

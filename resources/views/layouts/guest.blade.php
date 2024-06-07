@@ -11,6 +11,9 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=bangers:400" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=bungee-shade:400" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=carter-one:400" rel="stylesheet" />
         <link rel="stylesheet" href="{{asset('css/fontawesome-free/css/all.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/fontawesome-free/css/tailwind.css')}}">
         @vite(['resources/css/app.css','resources/js/app.js'])

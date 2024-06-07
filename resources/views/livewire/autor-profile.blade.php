@@ -17,14 +17,14 @@
             <div class="relative flex flex-col min-w-0 break-words bg-white dark:bg-slate-600 w-full mb-6 shadow-xl rounded-lg -mt-64">
                 <div class="px-6">
                         <div class="flex flex-wrap justify-center">
-                            <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                                <div class="relative">
-                                    <img src="https://media.gq.com.mx/photos/609c0fdeee4372271f0b9056/1:1/w_2000,h_2000,c_limit/salir%20guapo%20en%20fotos-605380757.jpg"
-                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px" />
+                            <div class="w-full px-4 lg:order-2 flex justify-center">
+                                <div class="relative w-60 h-60 max-md:w-40 max-md:h-40">
+                                    <img src="{{ asset('storage/'.$writer->img)}}"
+                                        class="shadow-xl rounded-full w-full h-full object-cover align-middle border-none -mt-28 max-md:-mt-20  " />
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center mt-40">
+                        <div class="text-center -mt-10">
                             <h3 class="text-4xl font-semibold leading-normal mb-2 dark:text-gray-300 text-blueGray-700 ">
                                 {{ $writer->name }} {{ $writer->last_name }}
                             </h3>
@@ -57,8 +57,11 @@
 
 
 
-                    <div class="mt-10 py-10 text-center">
-                        <div class="w-full p-6 py-14 pb-32 bg-blueGray-200 border-gray-300 border-2 rounded-lg shadow dark:bg-gray-500 dark:border-gray-600">
+                    
+                </div>
+            </div>
+            <div class="mt-10  text-center">
+                        <div class="w-full p-6 py-14 pb-32 bg-white border-gray-300 border-2 rounded-lg shadow dark:bg-gray-500 dark:border-gray-600">
                             <h5 class="mb-9 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">Articulos de  {{ $writer->name }} {{ $writer->last_name }}</h5>
                 
                             {{-- buscador --}}
@@ -82,15 +85,15 @@
                             </div>
                     
                             {{-- articulos --}}
-                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 mt-10">
+                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 mt-10">
                                 @foreach ($news as $new)
                                     <a href="{{ route('news.guestShow', $new->id) }}" class="transition realative ease-in-out delay-150 hover:-translate-y-5 hover:scale-100 duration-30">
                                         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                             <img class="rounded-t-lg" src="{{ asset("storage/public/images/news/{$new->img}") }}" alt="" />
                                             <div class="p-5">
-                                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $new->titulo }}</h5>
-                                                <div class="flex items-center">
-                                                    <span class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">fecha:</span>
+                                                <h5 class="mb-4 text-1xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $new->titulo }}</h5>
+                                                <div class="flex items-center justify-between">
+                                                    <span class="text-xs font-normal text-gray-500 dark:text-gray-400">fecha:</span>
                                                     <span class="text-xs font-normal text-gray-500 dark:text-gray-400">{{ formatearFecha($new->created_at) }}</span>
                                                 </div>
                                             </div>
@@ -103,8 +106,7 @@
                             </div>
                         </div>    
                     </div>
-                </div>
-            </div>
         </div>
     </section>
+    
 </div>

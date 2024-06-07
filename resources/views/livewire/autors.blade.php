@@ -1,4 +1,4 @@
-<div class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800  dark:border-gray-700">
+<div class="w-full p-4 bg-white border border-gray-200   rounded-lg shadow sm:p-8 dark:bg-gray-800  dark:border-gray-700">
     <div class="flex items-center justify-center mb-14">
         <h5 class="font-bold text-5xl text-center leading-none text-gray-900 dark:text-white">Nuestros autores</h5>
    </div>
@@ -14,16 +14,17 @@
                <input type="search" wire:model.live='searchWriters' id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Busca a un escritor" required />
            </div>
        </div>
-        <div role="list" class="mt-12 grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 row-auto col-span-3 divide-gray-200 dark:divide-gray-700">
+        <div role="list" class="mt-12 grid grid-cols-1    max-sm:grid-cols-2 lg:grid-cols-6 gap-6 xl:grid-cols-7 row-auto col-span-3 divide-gray-200 dark:divide-gray-700">
             @foreach ($writers as $writer)
-                <a href="{{ route('autorProfile', $writer->id) }}" title="{{ $writer->name }} {{ $writer->last_name }}" type="button" class="flex flex-col mx-2 my-2 items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                    <img class="ml-2 w-10 h-10 mb-3 rounded-full shadow-lg" src="{{ asset("storage/{$writer->img}") }}" alt="Bonnie image"/>
-                    <div class="flex flex-col justify-between p-4 leading-normal max-w-full">
-                        <p class="mb-3 text-base font-thin text-gray-700 dark:text-gray-400 overflow-hidden whitespace-nowrap text-ellipsis mr-8">{{ $writer->name }} {{ $writer->last_name }}</p>
-                    </div>
-                </a>         
+               <a href="{{ route('autorProfile', $writer->id) }}" title="{{ $writer->name }} {{ $writer->last_name }}"class="group transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-100 duration-200 flex flex-col items-center justify-center text-gray-800 hover:text-blue-600" title="View Profile">
+                    <img src="{{ asset("storage/{$writer->img}") }}" class="ml-2 w-16 shadow-xl h-16 object-cover mb-3 rounded-full ">
+                    <p class="text-center dark:text-white font-bold  text-sm mt-1">{{ $writer->name }} {{ $writer->last_name }}</p>
+                    <p class="text-xs text-gray-500 text-center">{{ $writer->profession }}</p>
+                </a>
             @endforeach
-        </div>
+        </div> 
+
+        
         <div class='pt-8'>
             {{ $writers->links('vendor.livewire.tailwind') }}
         </div>
