@@ -27,8 +27,8 @@
             <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                 <a class=" flex text-blueGray-700 text-2xl font-bold leading-relaxed mr-4 py-2 whitespace-nowrap uppercase" 
                     href="{{ url('/') }}">
-                    <img src="{{asset('img/logosedeba.png')}}" class="h-10 flex-initial mr-3">
-                    <span class="flex-initial dark:text-white"> SEDEBAT</span>
+                    <img src="{{asset('img/logosedeba.png')}}" class="h-20 flex-initial mr-3">
+                    <span class="flex-initial dark:text-white"> <img src="{{asset('img/gochodice.png')}}" class="h-20"></span>
                 </a>
                 <button data-collapse-toggle="navbar-dropdown" onclick="toggleNavbar('example-collapse-navbar')" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown" aria-expanded="false">
                     <span class="sr-only">Open main menu</span>
