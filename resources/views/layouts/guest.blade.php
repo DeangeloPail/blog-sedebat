@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
-        <title>SEDEBAT</title>
+        <title>El Gocho Dice</title>
         <link rel="icon" href="{{asset('img/logosedeba.png')}}" type="image/x-icon">
 
         <!-- Fonts -->
@@ -142,7 +142,7 @@
         <div class="container mx-auto px-4">
           <div class="flex flex-wrap text-center lg:text-left">
             <div class="w-full lg:w-6/12 px-4">
-              <h4 class="text-3xl font-semibold">BLOGSEDEBAT.COM</h4>
+              <h4 class="text-3xl font-semibold">ElGochoDice.COM</h4>
               <h5 class="text-lg mt-0 mb-2 text-blueGray-600 dark:text-gray-300">
                 Diseñado por <a href="https://github.com/DeangeloPail" class="text-blue-700 dark:text-blue-500 underline hover:no-underline font-medium">DeangeloPail</a> y <a href="https://github.com/Noodleman9570" class="text-blue-700 dark:text-blue-500 underline hover:no-underline font-medium">Noodleman9570</a>.
               </h5>

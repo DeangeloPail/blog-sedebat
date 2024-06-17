@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'SEDEBAT'),
+    'name' => env('APP_NAME', 'El Gocho Dice'),
     'app_url' => env('APP_URL', 'localhost'),
 
     /*
